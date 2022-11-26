@@ -65,6 +65,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
 
+    - family: clothes
+      fonts:
+        - asset: fonts/clothes.ttf
+
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:

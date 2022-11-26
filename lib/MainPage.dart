@@ -44,21 +44,9 @@ class MainPage extends StatelessWidget {
                 ],
               ),)),
             // Container(
-            //   child: Icon(Icons.sunny,size:100,color: Colors.amberAccent),
-            // ),
+
             SizedBox(height: 10,),
-            // Container(
-            //   child: Column(
-            //     children: [
-            //       Container(
-            //           child: Text('Ростов-на-Дону', style: TextStyle(fontFamily: 'Montserrat', color:light_coffee_clr ),)
-            //       ),
-            //       Container(
-            //         child: Text('18°C', style: TextStyle(fontFamily: 'Montserrat',color:light_coffee_clr ),),
-            //       )
-            //     ],
-            //   ),
-            // ),
+
             SizedBox(height: 30,width: 100),
             ElevatedButton(
                 style: ButtonStyle(
@@ -71,8 +59,6 @@ class MainPage extends StatelessWidget {
                     )
                 ),
                 onPressed: () => Navigator.of(context)?.pushNamed(RoutesGenerator.selectOutfitPage),
-
-
                // style: TextButton.styleFrom(backgroundColor: light_coffee_clr),
                 child: Padding(padding: EdgeInsets.all(10),
                 child:Text('Подобрать \n одежду', style: TextStyle(fontFamily: 'Montserrat', color: dark_coffee_clr,fontSize: 24)))),
@@ -84,45 +70,3 @@ class MainPage extends StatelessWidget {
   }
 }
 
-class UpdateTextPlace extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => UpdateTextPlaceState();
-}
-
-class UpdateTextPlaceState extends State {
-  String text_holder = 'Ростов-на-Дону';
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container(
-        child: Text(text_holder, style: TextStyle(fontFamily: 'Montserrat', color:light_coffee_clr ),)
-    );
-  }
-
-  changeText(String s) {
-    setState(() {
-      text_holder = s;
-    });
-  }
-  
-}
-// children: [
-// Container(
-// child: Text('Ростов-на-Дону', style: TextStyle(fontFamily: 'Montserrat'),)
-// ),
-// Container(
-// child: Text('18°C', style: TextStyle(fontFamily: 'Montserrat'),),
-// )
-// ],
-
-// child: Column(
-// children: [
-// Text('Ростов-на-Дону', style: TextStyle(fontFamily: 'Montserrat',fontSize: 20, color: dark_coffee_clr),),
-// Text('18°C', style: TextStyle(fontFamily: 'Montserrat',fontSize: 20, color: dark_coffee_clr),),
-// ],
-// ),
-// child: Container(
-// child: ElevatedButton(
-// onPressed: () {  },
-// child: Text('Подобрать одежду',style: TextStyle(fontFamily: 'Montserrat',fontSize: 20, color: dark_coffee_clr),),),
-// ),),),

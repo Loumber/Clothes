@@ -33,17 +33,6 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
     setState(() {
       _selectedIndex = index;
     });
-    // switch(index) {
-    //   case 0:
-    //     Navigator.pushNamed(context, '/mainpage');
-    //     break;
-    //   case 1:
-    //     Navigator.pushNamed(context, '/addingpage');
-    //     break;
-    //   case 2:
-    //     Navigator.pushNamed(context, '/wardrobepage');
-    //     break;
-    // }
   }
 
   @override
