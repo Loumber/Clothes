@@ -1,15 +1,14 @@
-// import 'dart:html';
+
 
 import 'package:clothes/AddClothesPage.dart';
 import 'package:clothes/WardrobePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:clothes/CustomColors.dart';
 
 import 'MainPage.dart';
 
-const dark_brown_clr = Color(0xFF6C4038);
-const light_coffee_clr = Color(0xFFECD6C7);
-const dark_coffee_clr = Color(0xFFA39391);
+
 
 
 class MyNavigationBar extends StatefulWidget {
@@ -40,35 +39,41 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
     return Scaffold(
       appBar: AppBar(
         shadowColor: null,
-        backgroundColor: light_coffee_clr,
-        title: const Text('Clothes', style: TextStyle(fontFamily: 'Montserrat',fontSize: 26, color: dark_coffee_clr),),
+        backgroundColor: CustomColors.light_coffee_clr,
+        title: const Text('Clothes', style: TextStyle(fontFamily: 'Montserrat',fontSize: 26, fontWeight: FontWeight.bold, color: CustomColors.dark_coffee_clr),),
       ),
-      backgroundColor: dark_brown_clr,
+      backgroundColor: CustomColors.dark_brown_clr,
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: light_coffee_clr,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        iconSize: 40,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list_alt_outlined),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle_outline_rounded),
-            label: '',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: dark_brown_clr,
-        onTap: _onItemTapped,
+      bottomNavigationBar: SizedBox(
+        height: 50,
+        child: BottomNavigationBar(
+          selectedFontSize: 0.0,
+          unselectedFontSize: 0.0,
+          backgroundColor: CustomColors.light_coffee_clr,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          iconSize: 35,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.list_alt_outlined),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add_circle_outline_rounded),
+              label: '',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: CustomColors.dark_brown_clr,
+          unselectedItemColor: CustomColors.dark_coffee_clr,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }

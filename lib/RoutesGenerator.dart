@@ -11,8 +11,10 @@ class RoutesGenerator {
   static const String selectOutfitPage = '/selectoutfitpage';
   static const String clothesListPage = '/clotheslistpage';
 
-
-  RoutesGenerator._() {}
+  // String title;
+  //
+  // RoutesGenerator(this.title);
+  //RoutesGenerator._(String t) {this.title;}
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
 //4.

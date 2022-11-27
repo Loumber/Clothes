@@ -2,11 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:clothes/clothes_icons.dart';
 
+import 'CustomColors.dart';
 import 'RoutesGenerator.dart';
 
-const dark_brown_clr = Color(0xFF6C4038);
-const light_coffee_clr = Color(0xFFECD6C7);
-const dark_coffee_clr = Color(0xFFA39391);
 
 class WardrobePage extends StatelessWidget {
   get onPressed => null;
@@ -60,13 +58,13 @@ class Tile extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.of(context)?.pushNamed(RoutesGenerator.clothesListPage),
       child: Padding(
-        padding: EdgeInsets.fromLTRB(15.0, 20.0, 20.0, 20.0),
+        padding: EdgeInsets.fromLTRB(15.0, 15.0, 20.0, 15.0),
         child: Container(
           height: 150,
           width: 110,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: light_coffee_clr,
+            color: CustomColors.light_coffee_clr,
           ),
           child:  Padding(
             padding: const EdgeInsets.all(10.0),
