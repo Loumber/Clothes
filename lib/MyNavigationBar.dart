@@ -1,6 +1,7 @@
 
 
 import 'package:clothes/AddClothesPage.dart';
+import 'package:clothes/Func_icons.dart';
 import 'package:clothes/WardrobePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,15 +58,15 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           iconSize: 35,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.list_alt_outlined),
+              icon: Icon(Func.clothes_hang),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
+              icon: Icon(Func.house_main),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.add_circle_outline_rounded),
+              icon: Icon(Func.add_circle),
               label: '',
             ),
           ],

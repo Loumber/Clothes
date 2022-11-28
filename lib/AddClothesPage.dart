@@ -9,7 +9,7 @@ class AddClothesPage extends StatelessWidget {
     // TODO: implement build
     return Center(
         child: Container(
-            child: Text('AddClothesPage')
+            child: Text('AddClothesPage', style: TextStyle(fontSize: 30),)
         ),
     );
   }

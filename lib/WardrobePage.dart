@@ -1,4 +1,5 @@
 
+import 'package:clothes/RouteArguments.dart';
 import 'package:flutter/material.dart';
 import 'package:clothes/clothes_icons.dart';
 
@@ -19,8 +20,8 @@ class WardrobePage extends StatelessWidget {
             children: [
               TableRow(
                 children: [
-                  Tile('Аксессуары', Clothes.scarf),
-                  Tile('Обувь', Clothes.shoes),
+                  Tile(RouteArguments('Аксессуары'), Clothes.scarf),
+                  Tile(RouteArguments('Обувь'), Clothes.shoes),
             ],
               decoration: BoxDecoration(
                 color: Colors.transparent
@@ -28,13 +29,13 @@ class WardrobePage extends StatelessWidget {
               ),
               TableRow(
                   children: [
-                    Tile('Верх', Clothes.tshirt),
-                    Tile('Низ', Clothes.jeans),
+                    Tile(RouteArguments('Верх'), Clothes.tshirt),
+                    Tile(RouteArguments('Низ'), Clothes.jeans),
                   ]
               ),
               TableRow(
                   children: [
-                    Tile('Верхняя одежда', Clothes.jacket),
+                    Tile(RouteArguments('Верхняя одежда'), Clothes.jacket),
                     Container()
                   ]
               )
@@ -48,15 +49,15 @@ class WardrobePage extends StatelessWidget {
 }
 
 class Tile extends StatelessWidget {
-  String title;
+  RouteArguments arguments;
   IconData icon;
 
-  Tile(this.title, this.icon);
+  Tile(this.arguments, this.icon);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
-      onTap: () => Navigator.of(context)?.pushNamed(RoutesGenerator.clothesListPage),
+      onTap: () => Navigator.of(context)?.pushNamed(RoutesGenerator.clothesListPage, arguments: arguments),
       child: Padding(
         padding: EdgeInsets.fromLTRB(15.0, 15.0, 20.0, 15.0),
         child: Container(
@@ -73,7 +74,7 @@ class Tile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Icon(icon, size: 70),
-                Text(title, style: TextStyle(fontFamily: 'Montserrat', fontSize: 18),textAlign: TextAlign.center,),
+                Text(arguments.title, style: TextStyle(fontFamily: 'Montserrat', fontSize: 18),textAlign: TextAlign.center,),
               ],
             ),
           ),

@@ -1,3 +1,5 @@
+import 'package:clothes/RouteArguments.dart';
+import 'package:clothes/RoutesGenerator.dart';
 import 'package:flutter/material.dart';
 
 import 'CustomColors.dart';
@@ -10,7 +12,7 @@ class ClothesListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    //final String title = ModalRoute.of(context)!.settings.arguments as String;
+    final RouteArguments arguments = ModalRoute.of(context)!.settings.arguments as RouteArguments;
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
@@ -23,7 +25,7 @@ class ClothesListPage extends StatelessWidget {
       backgroundColor: CustomColors.dark_brown_clr,
        body:
 
-           new ClothesList()
+           new ClothesList(arguments.title)
 
        //Center(
       //   child: Container(
@@ -36,18 +38,18 @@ class ClothesListPage extends StatelessWidget {
 }
 
 class ClothesList extends StatefulWidget {
-  // const ClothesList(this.title);
+   const ClothesList(this.title);
   // //ClothesList({Key key}) : super(key: key);
-  // final String title;
+   final String title;
   //final String description;
 
   @override
-  _ClothesListState createState() => _ClothesListState();
+  _ClothesListState createState() => _ClothesListState(title);
 }
 
 class _ClothesListState extends State<ClothesList> {
-  //_ClothesListState(this.title);
-  final String title = "Верхняя одежда";
+  _ClothesListState(this.title);
+  final String title;
   TextEditingController editingController = TextEditingController();
 
   final duplicateItems = List<ClothesInfo>.generate(10, (i) =>
@@ -148,24 +150,27 @@ class ListCard extends StatelessWidget {
     // TODO: implement build
     return Padding(
       padding: const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0)
-        ),
-        color: CustomColors.light_coffee_clr,
-        child: Container(
-          height: 70,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(13.0, 8.0, 13.0, 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(item.name, style: TextStyle(fontSize: 18),),
-                Text(item.category, style: TextStyle(fontSize: 12),),
-              ],
-            ),
-          )
+      child: InkWell(
+        onTap: () => Navigator.of(context)?.pushNamed(RoutesGenerator.itemPage),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0)
+          ),
+          color: CustomColors.light_coffee_clr,
+          child: Container(
+            height: 70,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(13.0, 8.0, 13.0, 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(item.name, style: TextStyle(fontSize: 18),),
+                  Text(item.category, style: TextStyle(fontSize: 12),),
+                ],
+              ),
+            )
+          ),
         ),
       ),
     );

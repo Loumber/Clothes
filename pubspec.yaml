@@ -68,6 +68,9 @@ flutter:
     - family: clothes
       fonts:
         - asset: fonts/clothes.ttf
+    - family: Func
+      fonts:
+        - asset: fonts/Func.ttf
 
   uses-material-design: true
 

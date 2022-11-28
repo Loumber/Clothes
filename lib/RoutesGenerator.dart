@@ -4,12 +4,15 @@ import 'package:clothes/SelectOutfitPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'ItemPage.dart';
 import 'MainPage.dart';
 
 class RoutesGenerator {
   static const String homePage = '/';
   static const String selectOutfitPage = '/selectoutfitpage';
   static const String clothesListPage = '/clotheslistpage';
+  static const String itemPage = '/itempage';
+
 
   // String title;
   //
@@ -31,6 +34,13 @@ class RoutesGenerator {
       case clothesListPage:
         return MaterialPageRoute(
           builder: (_) => ClothesListPage(),
+          settings: RouteSettings(
+            arguments: settings.arguments,
+          ),
+        );
+      case itemPage:
+        return MaterialPageRoute(
+          builder: (_) => ItemPage(),
         );
       default:
         throw FormatException("Route not found");
