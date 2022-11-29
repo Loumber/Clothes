@@ -1,10 +1,10 @@
 
-import 'package:clothes/RouteArguments.dart';
+import 'package:clothes/models/RouteArguments.dart';
 import 'package:flutter/material.dart';
 import 'package:clothes/clothes_icons.dart';
 
-import 'CustomColors.dart';
-import 'RoutesGenerator.dart';
+import '../CustomColors.dart';
+import '../RoutesGenerator.dart';
 
 
 class WardrobePage extends StatelessWidget {

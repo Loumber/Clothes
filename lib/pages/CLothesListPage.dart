@@ -1,8 +1,8 @@
-import 'package:clothes/RouteArguments.dart';
+import 'package:clothes/models/RouteArguments.dart';
 import 'package:clothes/RoutesGenerator.dart';
 import 'package:flutter/material.dart';
 
-import 'CustomColors.dart';
+import '../CustomColors.dart';
 
 
 class ClothesListPage extends StatelessWidget {
@@ -151,7 +151,7 @@ class ListCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0),
       child: InkWell(
-        onTap: () => Navigator.of(context)?.pushNamed(RoutesGenerator.itemPage),
+        onTap: () => Navigator.of(context).pushNamed(RoutesGenerator.itemPage),
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0)

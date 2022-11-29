@@ -1,10 +1,9 @@
-import 'package:clothes/Func_icons.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
-import 'CustomColors.dart';
+import '../CustomColors.dart';
 
-class ItemPage extends StatelessWidget {
+class SelectOutfitPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -20,11 +19,10 @@ class ItemPage extends StatelessWidget {
       backgroundColor: CustomColors.dark_brown_clr,
       body: Center(
         child: Container(
-          child: Text('ItemPage',style: TextStyle(fontSize: 30)),
+          child: Text('SelectOutfitPage',style: TextStyle(fontSize: 30)),
         ),
-      )
+      ),
     );
 
   }
-
 }

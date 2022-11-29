@@ -1,11 +1,11 @@
-import 'package:clothes/AddClothesPage.dart';
+import 'package:clothes/pages/AddClothesPage.dart';
 import 'package:clothes/RoutesGenerator.dart';
-import 'package:clothes/SelectOutfitPage.dart';
-import 'package:clothes/WardrobePage.dart';
+import 'package:clothes/pages/SelectOutfitPage.dart';
+import 'package:clothes/pages/WardrobePage.dart';
 import 'package:flutter/material.dart';
 import 'MyNavigationBar.dart';
 
-import 'MainPage.dart';
+import 'pages/MainPage.dart';
 
 const dark_brown_clr = Color(0xFF6C4038);
 const light_coffee_clr = Color(0xFFECD6C7);
@@ -35,41 +35,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-
-Widget menu() {
-  return Container(
-      color: dark_brown_clr,
-      child: TabBar(
-
-         indicatorColor: light_coffee_clr,
-         labelColor: dark_coffee_clr,
-         unselectedLabelColor: dark_coffee_clr,
-        indicator: BoxDecoration(
-          border: Border.all(color: light_coffee_clr),
-          borderRadius: BorderRadius.circular(10),
-          color: light_coffee_clr,
-        ),
-         indicatorSize: TabBarIndicatorSize.tab,
-         indicatorPadding: EdgeInsets.all(5.0),
-         tabs: const [
-             Tab(
-               //text: "Transactions",
-                icon: Icon(Icons.view_list_sharp, size:40),
-             ),
-             Tab(
-               //text: "Transactions",
-               icon: Icon(Icons.home_rounded, size:40),
-              ),
-             Tab(
-                //text: "Transactions",
-                icon: Icon(Icons.add_circle_outline,size: 40),
-
-             ),
-         ],
-  ),
-  );
-}
 
 
 

@@ -1,13 +1,18 @@
 
 
-import 'package:clothes/AddClothesPage.dart';
+import 'package:clothes/pages/AddClothesPage.dart';
 import 'package:clothes/Func_icons.dart';
-import 'package:clothes/WardrobePage.dart';
+import 'package:clothes/pages/TestPage.dart';
+import 'package:clothes/pages/WardrobePage.dart';
+import 'package:clothes/states/WeatherState.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:clothes/CustomColors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'MainPage.dart';
+import 'bloc/WeatherBloc.dart';
+import 'events/WeatherEvent.dart';
+import 'pages/MainPage.dart';
 
 
 
@@ -35,6 +40,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +50,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
         title: const Text('Clothes', style: TextStyle(fontFamily: 'Montserrat',fontSize: 26, fontWeight: FontWeight.bold, color: CustomColors.dark_coffee_clr),),
       ),
       backgroundColor: CustomColors.dark_brown_clr,
+
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -79,3 +86,4 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
     );
   }
 }
+

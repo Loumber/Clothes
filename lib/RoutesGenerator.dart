@@ -1,17 +1,19 @@
-import 'package:clothes/CLothesListPage.dart';
+import 'package:clothes/pages/CLothesListPage.dart';
 import 'package:clothes/MyNavigationBar.dart';
-import 'package:clothes/SelectOutfitPage.dart';
+import 'package:clothes/pages/SelectOutfitPage.dart';
+import 'package:clothes/pages/TestPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'ItemPage.dart';
-import 'MainPage.dart';
+import 'pages/ItemPage.dart';
+import 'pages/MainPage.dart';
 
 class RoutesGenerator {
   static const String homePage = '/';
   static const String selectOutfitPage = '/selectoutfitpage';
   static const String clothesListPage = '/clotheslistpage';
   static const String itemPage = '/itempage';
+
 
 
   // String title;
