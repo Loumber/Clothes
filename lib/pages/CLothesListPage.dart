@@ -1,3 +1,4 @@
+import 'package:clothes/main.dart';
 import 'package:clothes/models/RouteArguments.dart';
 import 'package:clothes/RoutesGenerator.dart';
 import 'package:flutter/material.dart';
@@ -52,8 +53,10 @@ class _ClothesListState extends State<ClothesList> {
   final String title;
   TextEditingController editingController = TextEditingController();
 
+  //весь список для категории
   final duplicateItems = List<ClothesInfo>.generate(10, (i) =>
-      i.isEven ? ClothesInfo('Куртка черная', 'категория: куртки', ''): ClothesInfo('Куртка красная', 'категория: куртки', ''));
+      i.isEven ? ClothesInfo('Куртка черная', 'куртки', 'item_$i'): ClothesInfo('Куртка красная', 'куртки', ''));
+  //список отображаемых предметов
   var items = <ClothesInfo>[];
 
   @override
@@ -128,12 +131,16 @@ class _ClothesListState extends State<ClothesList> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                return ListCard(items[index]);
-              },
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                colorScheme: ColorScheme.fromSwatch().copyWith(secondary: dark_coffee_clr)),
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  return ListCard(items[index]);
+                },
+              ),
             ),
           ),
         ],
@@ -165,8 +172,8 @@ class ListCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(item.name, style: TextStyle(fontSize: 18),),
-                  Text(item.category, style: TextStyle(fontSize: 12),),
+                  Text(item.name, style: TextStyle(fontFamily: 'Montserrat', fontSize: 18, color: dark_coffee_clr),),
+                  Text("категория: ${item.category}", style: TextStyle(fontFamily: 'Montserrat', fontSize: 12, color: dark_coffee_clr),),
                 ],
               ),
             )

@@ -1,9 +1,9 @@
+
 import 'package:clothes/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../CustomColors.dart';
-import '../Func_icons.dart';
 import '../RoutesGenerator.dart';
 import '../bloc/WeatherBloc.dart';
 import '../components/WeatherCardWrapper.dart';
@@ -21,6 +21,10 @@ class MainPage extends StatefulWidget {
 
 
 class _MainPageState extends State<MainPage>{
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -89,17 +93,24 @@ class _MainPageState extends State<MainPage>{
                     )
                 )
             );
-
-          }
-          return Scaffold(
-            backgroundColor: dark_coffee_clr,
-            body: Center(
-              child: CircularProgressIndicator(
-                backgroundColor: light_coffee_clr,
-                color: dark_brown_clr,
+          } else {
+            return Scaffold(
+              backgroundColor: dark_coffee_clr,
+              body: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(
+                      backgroundColor: light_coffee_clr,
+                      color: dark_brown_clr,
+                    ),
+                    SizedBox(height: 30,),
+                    Text('Ожидается интернет-соединение', style: TextStyle(fontSize: 19, fontFamily: 'Montserrat', color: light_coffee_clr),)
+                  ],
+                ),
               ),
-            ),
-          );
+            );
+          }
         },
       ),
     );

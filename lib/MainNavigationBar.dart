@@ -1,8 +1,6 @@
 
-
 import 'package:clothes/pages/AddClothesPage.dart';
 import 'package:clothes/Func_icons.dart';
-import 'package:clothes/pages/TestPage.dart';
 import 'package:clothes/pages/WardrobePage.dart';
 import 'package:clothes/states/WeatherState.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,6 +42,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         shadowColor: null,
         backgroundColor: CustomColors.light_coffee_clr,

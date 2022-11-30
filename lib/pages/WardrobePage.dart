@@ -1,4 +1,5 @@
 
+import 'package:clothes/main.dart';
 import 'package:clothes/models/RouteArguments.dart';
 import 'package:flutter/material.dart';
 import 'package:clothes/clothes_icons.dart';
@@ -73,8 +74,8 @@ class Tile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Icon(icon, size: 70),
-                Text(arguments.title, style: TextStyle(fontFamily: 'Montserrat', fontSize: 18),textAlign: TextAlign.center,),
+                Icon(icon, size: 70, color: dark_coffee_clr,),
+                Text(arguments.title, style: TextStyle(fontFamily: 'Montserrat', fontSize: 18,color: dark_coffee_clr),textAlign: TextAlign.center,),
               ],
             ),
           ),

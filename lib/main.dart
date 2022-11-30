@@ -3,7 +3,7 @@ import 'package:clothes/RoutesGenerator.dart';
 import 'package:clothes/pages/SelectOutfitPage.dart';
 import 'package:clothes/pages/WardrobePage.dart';
 import 'package:flutter/material.dart';
-import 'MyNavigationBar.dart';
+import 'MainNavigationBar.dart';
 
 import 'pages/MainPage.dart';
 

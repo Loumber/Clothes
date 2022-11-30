@@ -40,12 +40,7 @@ class WeatherCard extends StatelessWidget {
                   ],
                 ),
               ),
-              //SizedBox(width: 15,),
               Image.network("http://openweathermap.org/img/wn/${this.iconCode}@2x.png", scale: this.iconScale),
-              // Container(
-              //   //child: Icon(Icons.sunny, size: 110, color: Colors.amberAccent),
-              //   child : Image.network("http://openweathermap.org/img/wn/${this.iconCode}@2x.png", scale: this.iconScale),
-              // ),
             ],
           ),
         )

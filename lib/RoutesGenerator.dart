@@ -1,7 +1,6 @@
 import 'package:clothes/pages/CLothesListPage.dart';
-import 'package:clothes/MyNavigationBar.dart';
+import 'package:clothes/MainNavigationBar.dart';
 import 'package:clothes/pages/SelectOutfitPage.dart';
-import 'package:clothes/pages/TestPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
