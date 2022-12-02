@@ -204,7 +204,7 @@ class $ClothesTable extends Clothes with TableInfo<$ClothesTable, Clothe> {
   late final GeneratedColumn<String> name = GeneratedColumn<String>(
       'name', aliasedName, false,
       additionalChecks:
-          GeneratedColumn.checkTextLength(minTextLength: 4, maxTextLength: 10),
+          GeneratedColumn.checkTextLength(minTextLength: 1, maxTextLength: 10),
       type: DriftSqlType.string,
       requiredDuringInsert: true);
   static const VerificationMeta _typeMeta = const VerificationMeta('type');
