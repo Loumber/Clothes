@@ -14,8 +14,15 @@ part 'database.g.dart';
   tables: [Clothes],
   include: {'clothes.dart'},
 )
+
+
 class AppDb extends _$AppDb {
   AppDb() : super(_openConnection());
+  Future<List<Clothe>> get allClotheEntries => select(clothes).get();
+
+  Future<int> addClothes(ClothesCompanion entry) {
+    return into(clothes).insert(entry);
+  }
 
   @override
   int get schemaVersion => 1;
