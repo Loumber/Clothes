@@ -27,7 +27,7 @@ class ClothesListPage extends StatelessWidget {
       backgroundColor: CustomColors.dark_brown_clr,
        body:
 
-           new ClothesList(arguments.title)
+           ClothesList(arguments.title)
 
        //Center(
       //   child: Container(
@@ -93,7 +93,7 @@ class _ClothesListState extends State<ClothesList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<ClothesInfo>>(
-      future: db!.parseClotheToClothesInfo(db!.allClotheEntries),
+      future: db!.parseClotheToClothesInfo(db!.getCategory(title)),
       builder: (context, snapshot) {
 
         if (snapshot.connectionState != ConnectionState.done)
