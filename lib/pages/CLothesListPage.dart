@@ -4,7 +4,7 @@ import 'package:clothes/RoutesGenerator.dart';
 import 'package:flutter/material.dart';
 
 import '../CustomColors.dart';
-
+import '../ClothesInfo.dart';
 
 class ClothesListPage extends StatelessWidget {
   //const ClothesListPage({super.key, required this.title});
@@ -184,14 +184,3 @@ class ListCard extends StatelessWidget {
   }
 }
 
-class ClothesInfo {
-  String name;
-  String category;
-  String description;
-
-  ClothesInfo(this.name, this.category, this.description);
-
-  bool contains(String query) {
-    return (name.contains(query)) || (category.contains(query));
-  }
-}

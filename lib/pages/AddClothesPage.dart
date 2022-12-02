@@ -113,6 +113,13 @@ class AddClothesPage extends StatelessWidget {
 
                                     // отправить данные в бд
 
+
+                                    //Add clothes
+                                    // databse.insert(titleController.value.text,
+                                    // myWidgetStateKey.currentStatemy,
+                                    // WidgetStateKey.currentState,
+                                    // descriptionController.value.text,)
+
                                     titleController.clear();
                                     descriptionController.clear();
                                     myWidgetStateKey.currentState?.clearSelectedOptions();
