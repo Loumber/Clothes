@@ -3,6 +3,7 @@ import 'package:clothes/DropdownCategories.dart';
 import 'package:clothes/main.dart';
 import 'package:flutter/material.dart';
 import 'package:clothes/CustomColors.dart';
+import '../database/database.dart';
 
 class AddClothesPage extends StatelessWidget {
   TextEditingController titleController = TextEditingController();
@@ -115,10 +116,12 @@ class AddClothesPage extends StatelessWidget {
 
 
                                     //Add clothes
-                                    // databse.insert(titleController.value.text,
-                                    // myWidgetStateKey.currentStatemy,
-                                    // WidgetStateKey.currentState,
-                                    // descriptionController.value.text,)
+                                    // databse.insert()
+                                    AppDb().addClothesFromStrings(titleController.value.text,
+                                        myWidgetStateKey.currentState?.selectedType as String,
+                                        myWidgetStateKey.currentState?.selectedCategory as String,
+                                        descriptionController.value.text,
+                                    );
 
                                     titleController.clear();
                                     descriptionController.clear();

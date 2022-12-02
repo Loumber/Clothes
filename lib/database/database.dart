@@ -20,8 +20,20 @@ class AppDb extends _$AppDb {
   AppDb() : super(_openConnection());
   Future<List<Clothe>> get allClotheEntries => select(clothes).get();
 
-  Future<int> addClothes(ClothesCompanion entry) {
+  Future<int> addClothesFromStrings(String name, String category, String type, String desc) {
+    return addClothes(ClothesCompanion(name: Value(name),
+        category: Value(category),
+        type: Value(type),
+        description: Value(desc)
+    ));
+  }
+
+  Future<int> addClothes(ClothesCompanion entry) async {
     return into(clothes).insert(entry);
+  }
+
+  Future<List<Clothe>> getCategory(String category) async {
+    return await (select(clothes)..where((tbl) => tbl.category.equals(category))).get();
   }
 
   @override
