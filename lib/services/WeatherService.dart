@@ -9,7 +9,7 @@ class WeatherService {
   static Future<Weather> fetchCurrentWeather({query, String lat = "", String lon =""}) async {
      var url =
          'http://api.openweathermap.org/data/2.5/weather?q=$query&lat=$lat&lon=$lon&appid=$_apiKey&units=metric&lang=ru';
-    final response = await http.post(url);
+    final response = await http.post(Uri.parse(url));
 
     if (response.statusCode == 200) {
       return Weather.fromJson(json.decode(response.body));
