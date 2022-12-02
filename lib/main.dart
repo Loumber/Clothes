@@ -1,3 +1,4 @@
+import 'package:clothes/database/database.dart';
 import 'package:clothes/pages/AddClothesPage.dart';
 import 'package:clothes/RoutesGenerator.dart';
 import 'package:clothes/pages/SelectOutfitPage.dart';
@@ -11,8 +12,10 @@ const dark_brown_clr = Color(0xFF6C4038);
 const light_coffee_clr = Color(0xFFECD6C7);
 const dark_coffee_clr = Color(0xFFA39391);
 
+var db;
 
 void main() {
+  db = AppDb();
   runApp(const MyApp());
 }
 

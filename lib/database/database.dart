@@ -5,6 +5,7 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
+import '../ClothesInfo.dart';
 
 part 'database.g.dart';
 
@@ -32,9 +33,25 @@ class AppDb extends _$AppDb {
     return into(clothes).insert(entry);
   }
 
-  Future<List<Clothe>> getCategory(String category) async {
-    return await (select(clothes)..where((tbl) => tbl.category.equals(category))).get();
+  Future<List<ClothesInfo>> parseClotheToClothesInfo(Future<List<Clothe>> ll) async {
+    var rr = await ll;
+    return rr.map((cl) => ClothesInfo(cl.name, cl.category, cl.description))
+        .toList();
   }
+
+  Future<List<Clothe>> getCategory(String category) async {
+    return (select(clothes)
+      ..where((tbl) => tbl.category.equals(category))).get();
+  }
+
+  // Future<List<ClothesInfo>> getCategory(String category) async {
+  //   var ll = await (select(clothes)..where((tbl) => tbl.category.equals(category))).get();
+  //   return ll.map((cl) => ClothesInfo(cl.name, cl.category, cl.description)).toList();
+  // }
+
+
+
+
 
   @override
   int get schemaVersion => 1;

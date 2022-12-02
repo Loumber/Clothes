@@ -112,12 +112,7 @@ class AddClothesPage extends StatelessWidget {
                                       content: Text('Одежда добавлена'),
                                     ));
 
-                                    // отправить данные в бд
-
-
-                                    //Add clothes
-                                    // databse.insert()
-                                    AppDb().addClothesFromStrings(titleController.value.text,
+                                    db.addClothesFromStrings(titleController.value.text,
                                         myWidgetStateKey.currentState?.selectedType as String,
                                         myWidgetStateKey.currentState?.selectedCategory as String,
                                         descriptionController.value.text,

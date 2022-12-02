@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../CustomColors.dart';
 import '../ClothesInfo.dart';
+import '../database/database.dart';
 
 class ClothesListPage extends StatelessWidget {
   //const ClothesListPage({super.key, required this.title});
@@ -54,13 +55,13 @@ class _ClothesListState extends State<ClothesList> {
   TextEditingController editingController = TextEditingController();
 
   //весь список для категории
-  final duplicateItems = List<ClothesInfo>.generate(10, (i) =>
-      i.isEven ? ClothesInfo('Куртка черная', 'куртки', 'item_$i'): ClothesInfo('Куртка красная', 'куртки', ''));
+  List<ClothesInfo> duplicateItems = <ClothesInfo>[];
   //список отображаемых предметов
   var items = <ClothesInfo>[];
 
   @override
   void initState() {
+    //duplicateItems = await AppDb().getCategory(title);
     items.addAll(duplicateItems);
     super.initState();
   }
@@ -91,61 +92,76 @@ class _ClothesListState extends State<ClothesList> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
-            child: Text(title, style: TextStyle(fontFamily: 'Montserrat', fontSize: 26, color: CustomColors.light_coffee_clr),),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 20.0),
-            child: SizedBox(
-              width: 300,
-              child: TextField(
-                style: TextStyle(color: CustomColors.light_coffee_clr),
-                onChanged: (value) {
-                  filterSearchResults(value);
-                },
-                controller: editingController,
-                decoration: const InputDecoration(
-                  suffixStyle: TextStyle(color: CustomColors.light_coffee_clr),
-                  labelStyle: TextStyle(color: CustomColors.light_coffee_clr),
-                  labelText: "Поиск",
-                  prefixIcon: Icon(Icons.search,color: CustomColors.light_coffee_clr,),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                    borderSide: BorderSide(color: CustomColors.light_coffee_clr)
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                      borderSide: BorderSide(color: CustomColors.light_coffee_clr)
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                      borderSide: BorderSide(color: CustomColors.light_coffee_clr)
-                  ),
-                )
+    return FutureBuilder<List<ClothesInfo>>(
+      future: db.parseClotheToClothesInfo(db.allClotheEntries),
+      builder: (context, snapshot) {
+
+        if (snapshot.connectionState != ConnectionState.done)
+          return const Center(
+            child: CircularProgressIndicator()
+          );
+
+        items = snapshot.data!;
+        print(items.length);
+        items.forEach((element) {print(element.name);});
+
+        return Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+              child: Text(title, style: TextStyle(fontFamily: 'Montserrat', fontSize: 26, color: CustomColors.light_coffee_clr),),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 20.0),
+              child: SizedBox(
+                width: 300,
+                child: TextField(
+                    style: TextStyle(color: CustomColors.light_coffee_clr),
+                    onChanged: (value) {
+                      filterSearchResults(value);
+                      },
+                    controller: editingController,
+                    decoration: const InputDecoration(
+                      suffixStyle: TextStyle(color: CustomColors.light_coffee_clr),
+                      labelStyle: TextStyle(color: CustomColors.light_coffee_clr),
+                      labelText: "Поиск",
+                      prefixIcon: Icon(Icons.search,color: CustomColors.light_coffee_clr,),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+                      ),
+                    )
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Theme(
-              data: Theme.of(context).copyWith(
-                colorScheme: ColorScheme.fromSwatch().copyWith(secondary: dark_coffee_clr)),
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  return ListCard(items[index]);
-                },
+              Expanded(
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: dark_coffee_clr)),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      return ListCard(items[index]);
+                      },
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
-    );
+        );
+      }
+      );
   }
 }
 
