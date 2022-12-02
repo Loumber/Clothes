@@ -113,37 +113,37 @@ class _ClothesListState extends State<ClothesList> {
               padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
               child: Text(title, style: TextStyle(fontFamily: 'Montserrat', fontSize: 26, color: CustomColors.light_coffee_clr),),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 20.0),
-              child: SizedBox(
-                width: 300,
-                child: TextField(
-                    style: TextStyle(color: CustomColors.light_coffee_clr),
-                    onChanged: (value) {
-                      filterSearchResults(value);
-                      },
-                    controller: editingController,
-                    decoration: const InputDecoration(
-                      suffixStyle: TextStyle(color: CustomColors.light_coffee_clr),
-                      labelStyle: TextStyle(color: CustomColors.light_coffee_clr),
-                      labelText: "Поиск",
-                      prefixIcon: Icon(Icons.search,color: CustomColors.light_coffee_clr,),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
-                      ),
-                    )
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 20.0),
+            //   child: SizedBox(
+            //     width: 300,
+            //     child: TextField(
+            //         style: TextStyle(color: CustomColors.light_coffee_clr),
+            //         onChanged: (value) {
+            //           filterSearchResults(value);
+            //           },
+            //         controller: editingController,
+            //         decoration: const InputDecoration(
+            //           suffixStyle: TextStyle(color: CustomColors.light_coffee_clr),
+            //           labelStyle: TextStyle(color: CustomColors.light_coffee_clr),
+            //           labelText: "Поиск",
+            //           prefixIcon: Icon(Icons.search,color: CustomColors.light_coffee_clr,),
+            //           border: OutlineInputBorder(
+            //               borderRadius: BorderRadius.all(Radius.circular(25.0)),
+            //               borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+            //           ),
+            //           focusedBorder: OutlineInputBorder(
+            //               borderRadius: BorderRadius.all(Radius.circular(25.0)),
+            //               borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+            //           ),
+            //           enabledBorder: OutlineInputBorder(
+            //               borderRadius: BorderRadius.all(Radius.circular(25.0)),
+            //               borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+            //           ),
+            //         )
+            //     ),
+            //   ),
+            // ),
               Expanded(
                 child: Theme(
                   data: Theme.of(context).copyWith(
