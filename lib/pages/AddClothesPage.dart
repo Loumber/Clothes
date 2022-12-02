@@ -112,7 +112,7 @@ class AddClothesPage extends StatelessWidget {
                                       content: Text('Одежда добавлена'),
                                     ));
 
-                                    db.addClothesFromStrings(titleController.value.text,
+                                    db!.addClothesFromStrings(titleController.value.text,
                                         myWidgetStateKey.currentState?.selectedType as String,
                                         myWidgetStateKey.currentState?.selectedCategory as String,
                                         descriptionController.value.text,

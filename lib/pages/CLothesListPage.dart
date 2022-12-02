@@ -93,7 +93,7 @@ class _ClothesListState extends State<ClothesList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<ClothesInfo>>(
-      future: db.parseClotheToClothesInfo(db.allClotheEntries),
+      future: db!.parseClotheToClothesInfo(db!.allClotheEntries),
       builder: (context, snapshot) {
 
         if (snapshot.connectionState != ConnectionState.done)
