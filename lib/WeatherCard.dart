@@ -50,25 +50,24 @@ class WeatherCard extends StatelessWidget {
                 //crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                      // child: Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     Text(this.title, style: TextStyle(
-                      //       fontFamily: 'Montserrat',
-                      //       fontSize: 20,
-                      //       color: CustomColors.light_coffee_clr,),),
-                      //     IconButton(onPressed: null, icon: Icon(Icons.location_pin))
-                      //   ],
-                      // )
-                    child: RichText(
-                      text: TextSpan(
-                        recognizer: TapGestureRecognizer()..onTap = () {
-                          myWidgetStateKey.currentState?.onTap();
-                        },
-                        children: [
-                          TextSpan(text: this.title, style: TextStyle(fontFamily: 'Nexa',fontSize: 22, color: CustomColors.dark_brown_tint,),),
-                          WidgetSpan(child: Icon(Icons.location_pin, color: CustomColors.dark_brown_tint,)),
-                        ]
+
+                    child: GestureDetector(
+                      onTap: () => {
+                        print('Tap Here onTap'),
+                        BlocProvider.of<WeatherBloc>(context).add(WeatherCurrentPositionRequested()),
+                      },
+                      child: RichText(
+                        text: TextSpan(
+                            recognizer: TapGestureRecognizer()..onTap = () {
+                              // myWidgetStateKey.currentState?.onTap();
+                              print('Tap Here onTap');
+                              BlocProvider.of<WeatherBloc>(context).add(WeatherCurrentPositionRequested());
+                            },
+                            children: [
+                              TextSpan(text: this.title, style: TextStyle(fontFamily: 'Nexa',fontSize: 22, color: CustomColors.dark_brown_tint,),),
+                              WidgetSpan(child: Icon(Icons.location_pin, color: CustomColors.dark_brown_tint,)),
+                            ]
+                        ),
                       ),
                     ),
                   ),
@@ -79,16 +78,7 @@ class WeatherCard extends StatelessWidget {
                         fontFamily: 'Montserrat',
                         fontSize: 38),),
                   ),
-                  // Container(
-                  //   height: size.height * 0.35 * 0.7,
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //     crossAxisAlignment: CrossAxisAlignment.center,
-                  //     children: [
-                  //
-                  //     ],
-                  //   ),
-                  // ),
+
                 ],
               ),
             ),
@@ -100,69 +90,3 @@ class WeatherCard extends StatelessWidget {
   }
 }
 
-class MySearchDelegate extends SearchDelegate {
-  String selectedResult = '';
-  final Function callback;
-  @override
-  String get searchFieldLabel => 'Поиск';
-
-  MySearchDelegate(this.callback);
-
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return [
-      IconButton(
-        icon: Icon(Icons.close),
-        onPressed: () {
-          query = "";
-        },
-      ),
-    ];
-  }
-
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      icon: Icon(Icons.arrow_back),
-      onPressed: () {
-        Navigator.pop(context);
-      },
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text(selectedResult),
-      ),
-    );
-  }
-
-  @override
-  void showResults(BuildContext context) {
-    selectedResult = query;
-    callback(query);
-    close(context, query);
-  }
-
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List<String> searchResults = ["Ростов-на-Дону","Москва","Санкт-Петербург","Воронеж","Самара","Екатеринбург","Краснодар", query].where((element) => element.contains(query)).toList();
-
-    return ListView.builder(
-      itemCount: searchResults.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(searchResults[index]),
-          onTap: () {
-            selectedResult = searchResults[index];
-            callback(selectedResult);
-            Navigator.pop(context);
-          },
-        );
-      },
-    );
-  }
-}

@@ -1,5 +1,6 @@
 
 import 'package:clothes/main.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ import '../bloc/WeatherBloc.dart';
 import '../components/WeatherCardWrapper.dart';
 import '../events/WeatherEvent.dart';
 import '../states/WeatherState.dart';
+import 'package:geolocator/geolocator.dart';
 
 
 //
@@ -35,7 +37,7 @@ class MainPageState extends State<MainPage>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return BlocProvider(
-      create: (context) => WeatherBloc('Ростов-на-Дону'),
+      create: (context) => WeatherBloc(),//WeatherBloc('Ростов-на-Дону'),
       child: BlocBuilder<WeatherBloc, WeatherState>(
         builder: (context, state) {
           if (state is WeatherLoadSuccess) {
@@ -46,16 +48,23 @@ class MainPageState extends State<MainPage>{
                       children: [
                         WeatherCardWrapper(
                             weather: state.weather,
-                            size: MediaQuery.of(context).size),
+                            size: MediaQuery
+                                .of(context)
+                                .size),
+
 
                         SizedBox(height: 10,),
 
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.75, //180
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * 0.75, //180
                           height: 70,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              border: Border.all(color : CustomColors.light_coffee_tint),
+                              border: Border.all(color: CustomColors
+                                  .light_coffee_tint),
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [BoxShadow(
                                 color: CustomColors.light_coffee_tint,
@@ -63,7 +72,8 @@ class MainPageState extends State<MainPage>{
                                 blurRadius: 10,
                                 blurStyle: BlurStyle.normal,
 
-                              )]
+                              )
+                              ]
                           ),
                           child: Center(
                             child: GestureDetector(
@@ -72,6 +82,7 @@ class MainPageState extends State<MainPage>{
                                     context: context, delegate: MySearchDelegate((query) {
                                   BlocProvider.of<WeatherBloc>(context).add(WeatherRequested(city: query));
                                 }));
+
                               },
                               child: Text(
                                 'Изменить город',
@@ -91,11 +102,15 @@ class MainPageState extends State<MainPage>{
                         SizedBox(height: 10,),
 
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.75,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * 0.75,
                           height: 70,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              border: Border.all(color : CustomColors.light_coffee_tint),
+                              border: Border.all(color: CustomColors
+                                  .light_coffee_tint),
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [BoxShadow(
                                 color: CustomColors.light_coffee_tint,
@@ -103,12 +118,14 @@ class MainPageState extends State<MainPage>{
                                 blurRadius: 10,
                                 blurStyle: BlurStyle.normal,
 
-                              )]
+                              )
+                              ]
                           ),
                           child: Center(
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.of(context)?.pushNamed(RoutesGenerator.selectOutfitPage);
+                                Navigator.of(context)?.pushNamed(
+                                    RoutesGenerator.selectOutfitPage);
                               },
                               child: Text(
                                 'Подобрать одежду',
@@ -124,53 +141,12 @@ class MainPageState extends State<MainPage>{
                           ),
                         ),
 
-                        // SizedBox(
-                        //   width: 180,
-                        //   height: 70,
-                        //   child:ElevatedButton(
-                        //       style: ElevatedButton.styleFrom(
-                        //         backgroundColor: Colors.white,
-                        //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                        //         shadowColor: CustomColors.light_coffee_tint,
-                        //         elevation: 5
-                        //       ),
-                        //
-                        //       onPressed: () {
-                        //         showSearch(
-                        //             context: context, delegate: MySearchDelegate((query) {
-                        //           BlocProvider.of<WeatherBloc>(context).add(WeatherRequested(city: query));
-                        //         }));},
-                        //       // style: TextButton.styleFrom(backgroundColor: light_coffee_clr),
-                        //       child: Padding(padding: EdgeInsets.all(10),
-                        //           child:Text('Обновить \n погоду', style: TextStyle(color: CustomColors.dark_coffee_clr,fontSize: 22)))),
-                        // ),
-
-
-
-                        // SizedBox(
-                        //   child:  ElevatedButton(
-                        //       style: ButtonStyle(
-                        //           backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                        //           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        //               RoundedRectangleBorder(
-                        //                 borderRadius: BorderRadius.circular(40.0),
-                        //                 //side: BorderSide(color: Colors.red)
-                        //               )
-                        //           )
-                        //       ),
-                        //       onPressed: () => Navigator.of(context)?.pushNamed(RoutesGenerator.selectOutfitPage),
-                        //       // style: TextButton.styleFrom(backgroundColor: light_coffee_clr),
-                        //       child: Padding(padding: EdgeInsets.all(10),
-                        //           child:Text('Подобрать \n одежду', style: TextStyle(color: CustomColors.dark_coffee_clr,fontSize: 22)))),
-                        // ),
-
-
-                        SizedBox(height: 50,width: 100),
+                        SizedBox(height: 50, width: 100),
                       ],
                     )
                 )
             );
-          } else {
+          };
             return Scaffold(
               backgroundColor: Colors.white,
               body: Center(
@@ -188,7 +164,7 @@ class MainPageState extends State<MainPage>{
               ),
             );
           }
-        },
+        //}
       ),
     );
   }
