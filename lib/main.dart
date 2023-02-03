@@ -4,13 +4,11 @@ import 'package:clothes/RoutesGenerator.dart';
 import 'package:clothes/pages/SelectOutfitPage.dart';
 import 'package:clothes/pages/WardrobePage.dart';
 import 'package:flutter/material.dart';
+import 'CustomColors.dart';
 import 'MainNavigationBar.dart';
 
 import 'pages/MainPage.dart';
 
-const dark_brown_clr = Color(0xFF6C4038);
-const light_coffee_clr = Color(0xFFECD6C7);
-const dark_coffee_clr = Color(0xFFA39391);
 
 AppDb? db;
 
@@ -29,8 +27,11 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: RoutesGenerator.generateRoute,
       title: 'Clothes',
       theme: ThemeData(
-          fontFamily: 'Montserrat',
-          backgroundColor: dark_brown_clr,
+          textSelectionTheme: TextSelectionThemeData(
+            selectionHandleColor: CustomColors.dark_brown_tint2,
+          ),
+          fontFamily: 'Nexa',
+          backgroundColor: Colors.white,
           ),
 
       debugShowCheckedModeBanner: false,

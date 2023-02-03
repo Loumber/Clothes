@@ -18,16 +18,17 @@ class ClothesListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
-            color: CustomColors.dark_coffee_clr
+            color: CustomColors.dark_brown_tint
         ),
         shadowColor: null,
+        elevation: 0,
         backgroundColor: CustomColors.light_coffee_clr,
-        title: const Text('Clothes', style: TextStyle(fontFamily: 'Montserrat',fontSize: 26, color: CustomColors.dark_coffee_clr),),
+        title:  Text(arguments.title, style: TextStyle(fontSize: 26, color: CustomColors.dark_brown_tint),),
       ),
-      backgroundColor: CustomColors.dark_brown_clr,
+      backgroundColor: Colors.white,
        body:
 
-           new ClothesList(arguments.title)
+           new ClothesList()
 
        //Center(
       //   child: Container(
@@ -40,18 +41,17 @@ class ClothesListPage extends StatelessWidget {
 }
 
 class ClothesList extends StatefulWidget {
-   const ClothesList(this.title);
+  ClothesList();
   // //ClothesList({Key key}) : super(key: key);
-   final String title;
   //final String description;
 
   @override
-  _ClothesListState createState() => _ClothesListState(title);
+  _ClothesListState createState() => _ClothesListState();
 }
 
 class _ClothesListState extends State<ClothesList> {
-  _ClothesListState(this.title);
-  final String title;
+  _ClothesListState();
+
   TextEditingController editingController = TextEditingController();
 
   //весь список для категории
@@ -109,10 +109,9 @@ class _ClothesListState extends State<ClothesList> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
-              child: Text(title, style: TextStyle(fontFamily: 'Montserrat', fontSize: 26, color: CustomColors.light_coffee_clr),),
-            ),
+
+              SizedBox(height: 40,),
+
             // Padding(
             //   padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 20.0),
             //   child: SizedBox(
@@ -147,7 +146,7 @@ class _ClothesListState extends State<ClothesList> {
               Expanded(
                 child: Theme(
                   data: Theme.of(context).copyWith(
-                      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: dark_coffee_clr)),
+                      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.dark_coffee_clr)),
                   child: ListView.builder(
                     shrinkWrap: true,
                     itemCount: items.length,
@@ -174,12 +173,14 @@ class ListCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0),
       child: InkWell(
-        onTap: () => Navigator.of(context).pushNamed(RoutesGenerator.itemPage),
+        onTap: () => Navigator.of(context).pushNamed(RoutesGenerator.itemPage, arguments: item),
         child: Card(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0)
+            borderRadius: BorderRadius.circular(15.0),
           ),
-          color: CustomColors.light_coffee_clr,
+          shadowColor: CustomColors.light_coffee_tint,
+          elevation: 5,
+          color: CustomColors.light_coffee_tint,
           child: Container(
             height: 70,
             child: Padding(
@@ -188,8 +189,8 @@ class ListCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(item.name, style: TextStyle(fontFamily: 'Montserrat', fontSize: 18, color: dark_coffee_clr),),
-                  Text("категория: ${item.category}", style: TextStyle(fontFamily: 'Montserrat', fontSize: 12, color: dark_coffee_clr),),
+                  Text(item.name, style: TextStyle( fontSize: 18, color: CustomColors.dark_brown_tint),),
+                  Text("категория: ${item.category}", style: TextStyle( fontSize: 12, color: CustomColors.dark_brown_tint),),
                 ],
               ),
             )

@@ -15,15 +15,20 @@ import '../states/WeatherState.dart';
 //
 class MainPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _MainPageState();
+  State<StatefulWidget> createState() => MainPageState();
 
 }
 
 
-class _MainPageState extends State<MainPage>{
+class MainPageState extends State<MainPage>{
 
 
-
+  void onTap() {
+    showSearch(
+        context: context, delegate: MySearchDelegate((query) {
+      BlocProvider.of<WeatherBloc>(context).add(WeatherRequested(city: query));
+    }));
+  }
 
 
   @override
@@ -40,52 +45,124 @@ class _MainPageState extends State<MainPage>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         WeatherCardWrapper(
-                            weather: state.weather),
+                            weather: state.weather,
+                            size: MediaQuery.of(context).size),
 
                         SizedBox(height: 10,),
 
-                        SizedBox(
-                          width: 180,
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.75, //180
                           height: 70,
-                          child:ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all<Color>(CustomColors.light_coffee_clr),
-                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(40.0),
-                                        //side: BorderSide(color: Colors.red)
-                                      )
-                                  )
-                              ),
-                              onPressed: () {
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(color : CustomColors.light_coffee_tint),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [BoxShadow(
+                                color: CustomColors.light_coffee_tint,
+                                spreadRadius: 1,
+                                blurRadius: 10,
+                                blurStyle: BlurStyle.normal,
+
+                              )]
+                          ),
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () {
                                 showSearch(
                                     context: context, delegate: MySearchDelegate((query) {
                                   BlocProvider.of<WeatherBloc>(context).add(WeatherRequested(city: query));
-                                }));},
-                              // style: TextButton.styleFrom(backgroundColor: light_coffee_clr),
-                              child: Padding(padding: EdgeInsets.all(10),
-                                  child:Text('Обновить \n погоду', style: TextStyle(fontFamily: 'Montserrat', color: CustomColors.dark_coffee_clr,fontSize: 22)))),
+                                }));
+                              },
+                              child: Text(
+                                'Изменить город',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontFamily: 'Nexa',
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 21,
+                                  letterSpacing: 0.0,
+                                  color: CustomColors.dark_brown_tint,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
 
                         SizedBox(height: 10,),
 
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.75,
+                          height: 70,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(color : CustomColors.light_coffee_tint),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [BoxShadow(
+                                color: CustomColors.light_coffee_tint,
+                                spreadRadius: 1,
+                                blurRadius: 10,
+                                blurStyle: BlurStyle.normal,
 
-                        SizedBox(
-                          child:  ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all<Color>(CustomColors.light_coffee_clr),
-                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(40.0),
-                                        //side: BorderSide(color: Colors.red)
-                                      )
-                                  )
+                              )]
+                          ),
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context)?.pushNamed(RoutesGenerator.selectOutfitPage);
+                              },
+                              child: Text(
+                                'Подобрать одежду',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 21,
+                                  letterSpacing: 0.0,
+                                  color: CustomColors.dark_brown_tint,
+                                ),
                               ),
-                              onPressed: () => Navigator.of(context)?.pushNamed(RoutesGenerator.selectOutfitPage),
-                              // style: TextButton.styleFrom(backgroundColor: light_coffee_clr),
-                              child: Padding(padding: EdgeInsets.all(10),
-                                  child:Text('Подобрать \n одежду', style: TextStyle(fontFamily: 'Montserrat', color: CustomColors.dark_coffee_clr,fontSize: 22)))),
+                            ),
+                          ),
                         ),
+
+                        // SizedBox(
+                        //   width: 180,
+                        //   height: 70,
+                        //   child:ElevatedButton(
+                        //       style: ElevatedButton.styleFrom(
+                        //         backgroundColor: Colors.white,
+                        //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                        //         shadowColor: CustomColors.light_coffee_tint,
+                        //         elevation: 5
+                        //       ),
+                        //
+                        //       onPressed: () {
+                        //         showSearch(
+                        //             context: context, delegate: MySearchDelegate((query) {
+                        //           BlocProvider.of<WeatherBloc>(context).add(WeatherRequested(city: query));
+                        //         }));},
+                        //       // style: TextButton.styleFrom(backgroundColor: light_coffee_clr),
+                        //       child: Padding(padding: EdgeInsets.all(10),
+                        //           child:Text('Обновить \n погоду', style: TextStyle(color: CustomColors.dark_coffee_clr,fontSize: 22)))),
+                        // ),
+
+
+
+                        // SizedBox(
+                        //   child:  ElevatedButton(
+                        //       style: ButtonStyle(
+                        //           backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        //           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        //               RoundedRectangleBorder(
+                        //                 borderRadius: BorderRadius.circular(40.0),
+                        //                 //side: BorderSide(color: Colors.red)
+                        //               )
+                        //           )
+                        //       ),
+                        //       onPressed: () => Navigator.of(context)?.pushNamed(RoutesGenerator.selectOutfitPage),
+                        //       // style: TextButton.styleFrom(backgroundColor: light_coffee_clr),
+                        //       child: Padding(padding: EdgeInsets.all(10),
+                        //           child:Text('Подобрать \n одежду', style: TextStyle(color: CustomColors.dark_coffee_clr,fontSize: 22)))),
+                        // ),
 
 
                         SizedBox(height: 50,width: 100),
@@ -95,17 +172,17 @@ class _MainPageState extends State<MainPage>{
             );
           } else {
             return Scaffold(
-              backgroundColor: dark_coffee_clr,
+              backgroundColor: Colors.white,
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircularProgressIndicator(
-                      backgroundColor: light_coffee_clr,
-                      color: dark_brown_clr,
+                      backgroundColor: CustomColors.light_coffee_clr,
+                      color: CustomColors.dark_brown_clr,
                     ),
                     SizedBox(height: 30,),
-                    Text('Ожидается интернет-соединение', style: TextStyle(fontSize: 19, fontFamily: 'Montserrat', color: light_coffee_clr),)
+                    Text('Ожидается интернет-соединение', style: TextStyle(fontSize: 19, color: CustomColors.dark_brown_tint),)
                   ],
                 ),
               ),

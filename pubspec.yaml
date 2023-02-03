@@ -58,6 +58,12 @@ flutter_icons:
 # The following section is specific to Flutter packages.
 flutter:
   fonts:
+    - family: Open Sans
+      fonts:
+        - asset: fonts/OpenSans/OpenSans-Regular.ttf
+    - family: Nexa
+      fonts:
+        - asset: fonts/Nexa/Nexa-Trial-Regular2.ttf
     - family: Montserrat
       fonts:
         #        - asset: fonts/Montserrat/static/Montserrat-Thin.ttf

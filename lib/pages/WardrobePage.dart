@@ -60,22 +60,30 @@ class Tile extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.of(context)?.pushNamed(RoutesGenerator.clothesListPage, arguments: arguments),
       child: Padding(
-        padding: EdgeInsets.fromLTRB(15.0, 15.0, 20.0, 15.0),
+        padding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
         child: Container(
-          height: 150,
-          width: 110,
+          height: 160,
+          width: 120,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: CustomColors.light_coffee_clr,
+              color: Colors.white,
+              border: Border.all(color : CustomColors.light_coffee_tint),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [BoxShadow(
+                color: CustomColors.light_coffee_tint,
+                spreadRadius: 1,
+                blurRadius: 10,
+                blurStyle: BlurStyle.normal,
+
+              )]
           ),
           child:  Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Icon(icon, size: 70, color: dark_coffee_clr,),
-                Text(arguments.title, style: TextStyle(fontFamily: 'Montserrat', fontSize: 18,color: dark_coffee_clr),textAlign: TextAlign.center,),
+                Icon(icon, size: 80, color: CustomColors.dark_brown_tint,),
+                Text(arguments.title, style: TextStyle(fontSize: 19,color: CustomColors.dark_brown_tint, height: 1.1),textAlign: TextAlign.center,),
               ],
             ),
           ),

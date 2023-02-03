@@ -29,20 +29,21 @@ class DropdownCategoriesState extends State<DropdownCategories>{
           children: [
             DecoratedBox(
               decoration: BoxDecoration(
-                color: CustomColors.light_coffee_clr,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(10.0),
-                border: Border.all(color: dark_coffee_clr, width: 2)
+                border: Border.all(color: CustomColors.dark_brown_tint2, width: 2.5)
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
-                    dropdownColor: light_coffee_clr,
-                    focusColor: dark_coffee_clr,
-                    hint: Text('Категория', style: TextStyle(fontSize: 16, fontFamily: 'Montserrat', color: dark_coffee_clr),),
+                    iconEnabledColor: CustomColors.dark_brown_tint,
+                    dropdownColor: Colors.white,
+                    focusColor: CustomColors.dark_brown_tint2,
+                    hint: Text('Категория', style: TextStyle(fontFamily: 'Nexa',fontSize: 16, color: CustomColors.dark_brown_tint2),),
                     value: selectedCategory,
                     isExpanded: true,
-                    style: TextStyle(fontSize: 16, fontFamily: 'Montserrat', color: dark_coffee_clr),
+                    style: TextStyle(fontSize: 16, color: CustomColors.dark_brown_tint2),
                     items: categories.map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -77,18 +78,20 @@ class DropdownCategoriesState extends State<DropdownCategories>{
 
             DecoratedBox(
               decoration: BoxDecoration(
-                  color: CustomColors.light_coffee_clr,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(10.0),
-                  border: Border.all(color: dark_coffee_clr, width: 2)
+                  border: Border.all(color: CustomColors.dark_brown_tint2, width: 2.5)
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
-                    dropdownColor: light_coffee_clr,
-                    style: TextStyle(fontSize: 16, fontFamily: 'Montserrat', color: dark_coffee_clr),
-                    focusColor: dark_coffee_clr,
-                    hint: Text('Тип', style: TextStyle(fontSize: 16, fontFamily: 'Montserrat', color: dark_coffee_clr),),
+                    iconEnabledColor: CustomColors.dark_brown_tint,
+                    iconDisabledColor: CustomColors.dark_brown_tint2,
+                    dropdownColor: Colors.white,
+                    style: TextStyle(fontSize: 16, fontFamily: 'Nexa', color: CustomColors.dark_brown_tint2),
+                    focusColor: CustomColors.dark_coffee_clr,
+                    hint: Text('Тип', style: TextStyle(fontSize: 16, fontFamily: 'Montserrat', color: CustomColors.dark_brown_tint2),),
                     value: selectedType,
                     isExpanded: true,
                     items: types.map((String value) {

@@ -1,26 +1,38 @@
 import 'package:clothes/Func_icons.dart';
+import 'package:clothes/database/database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../ClothesInfo.dart';
 import '../CustomColors.dart';
+import '../RoutesGenerator.dart';
+import '../models/RouteArguments.dart';
 
 class ItemPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    final ClothesInfo item = ModalRoute.of(context)!.settings.arguments as ClothesInfo;
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
-            color: CustomColors.dark_coffee_clr
+            color: CustomColors.dark_brown_tint
         ),
         shadowColor: null,
+        elevation: 0,
         backgroundColor: CustomColors.light_coffee_clr,
-        title: const Text('Clothes', style: TextStyle(fontFamily: 'Montserrat',fontSize: 26, color: CustomColors.dark_coffee_clr),),
+        title: const Text('Clothes', style: TextStyle(fontFamily: 'Nexa',fontSize: 26, color: CustomColors.dark_brown_tint),),
       ),
-      backgroundColor: CustomColors.dark_brown_clr,
+      backgroundColor: Colors.white,
       body: Center(
         child: Container(
-          child: Text('ItemPage',style: TextStyle(fontSize: 30)),
+          child: InkWell(
+              child: Text('ItemPage',style: TextStyle(fontSize: 30)),
+              onTap: () => {
+                Navigator.of(context)?.pushNamed(RoutesGenerator.editClothesPage, arguments: item),
+              },
+          ),
         ),
       )
     );

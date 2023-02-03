@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 class WeatherCardWrapper extends StatelessWidget {
   final Weather weather;
+  final Size size;
 
-  const WeatherCardWrapper({super.key, required this.weather});
+  const WeatherCardWrapper({super.key, required this.weather, required this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +16,10 @@ class WeatherCardWrapper extends StatelessWidget {
           weather.cityName,
           weather.temperature,
           weather.iconCode,
+          weather.description,
+          size,
           temperatureFontSize : 64,
-          iconScale: 0.6,
+          iconScale: 0.8,
         )
       ]),
     );
