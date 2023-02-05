@@ -12,6 +12,8 @@ import '../events/WeatherEvent.dart';
 import '../states/WeatherState.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../states/WeatherState.dart';
+
 
 //
 //
@@ -23,7 +25,7 @@ class MainPage extends StatefulWidget {
 
 
 class MainPageState extends State<MainPage>{
-
+  late WeatherState wstate;
 
   void onTap() {
     showSearch(
@@ -35,19 +37,17 @@ class MainPageState extends State<MainPage>{
 
   @override
   Widget build(BuildContext context) {
+    wstate = context.watch<WeatherBloc>().state;
     // TODO: implement build
-    return BlocProvider(
-      create: (context) => WeatherBloc(),//WeatherBloc('Ростов-на-Дону'),
-      child: BlocBuilder<WeatherBloc, WeatherState>(
-        builder: (context, state) {
-          if (state is WeatherLoadSuccess) {
+
+          if (wstate is WeatherLoadSuccess) {
             return Center(
                 child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         WeatherCardWrapper(
-                            weather: state.weather,
+                            weather: (wstate as WeatherLoadSuccess).weather,
                             size: MediaQuery
                                 .of(context)
                                 .size),
@@ -165,9 +165,6 @@ class MainPageState extends State<MainPage>{
             );
           }
         //}
-      ),
-    );
-  }
 }
 
 class MySearchDelegate extends SearchDelegate {

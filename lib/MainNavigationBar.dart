@@ -52,8 +52,12 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
       ),
       backgroundColor: Colors.white,
 
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body : BlocProvider(
+         create: (context) => WeatherBloc(),//WeatherBloc('Ростов-на-Дону'),
+         child: BlocBuilder<WeatherBloc, WeatherState>(
+         builder: (context, state) {
+           return _widgetOptions.elementAt(_selectedIndex);
+         },),
       ),
       bottomNavigationBar: SizedBox(
         height: 55,
