@@ -48,8 +48,10 @@ class AddClothesPage extends StatelessWidget {
                               fontSize: 16,
                               color: CustomColors.dark_brown_tint2
                           ),
+                          //maxLength: 10,
                           decoration: InputDecoration(
                             labelText: 'Название',
+
                             labelStyle: TextStyle(
                               fontSize: 16,
                               color: CustomColors.dark_brown_tint2
@@ -133,6 +135,7 @@ class AddClothesPage extends StatelessWidget {
                                         myWidgetStateKey.currentState?.selectedCategory as String,
                                         descriptionController.value.text,
                                       );
+
 
                                       titleController.clear();
                                       descriptionController.clear();

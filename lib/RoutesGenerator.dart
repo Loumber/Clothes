@@ -33,6 +33,9 @@ class RoutesGenerator {
       case selectOutfitPage:
         return MaterialPageRoute(
           builder: (_) => SelectOutfitPage(),
+          settings: RouteSettings(
+            arguments: settings.arguments,
+          ),
         );
       case clothesListPage:
         return MaterialPageRoute(

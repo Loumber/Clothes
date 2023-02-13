@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../ClothesInfo.dart';
 import '../CustomColors.dart';
 import '../RoutesGenerator.dart';
 import '../bloc/WeatherBloc.dart';
@@ -14,9 +15,13 @@ import 'package:geolocator/geolocator.dart';
 
 import '../states/WeatherState.dart';
 
-
-//
-//
+List<ClothesInfo> GenerateList() {
+  List<ClothesInfo> clothesList = <ClothesInfo>[];
+  clothesList.add(ClothesInfo('Любимая футболка', '1', "2", imageUrl: "https://cdn2.static1-sima-land.com/items/3905382/0/700-nw.jpg"));
+  clothesList.add(ClothesInfo('Черные кеды', '2', "2", imageUrl: "https://i.ebayimg.com/00/s/ODAwWDkwMA==/z/HOwAAOSwpRRWmZqH/\$_57.JPG?set_id=880000500F"));
+  clothesList.add(ClothesInfo('Темные джинсы', '1', "2", imageUrl: "https://cdn.shopify.com/s/files/1/0143/6991/4937/products/4.png?v=1574486390"));
+  return clothesList;
+}
 class MainPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => MainPageState();
@@ -125,7 +130,7 @@ class MainPageState extends State<MainPage>{
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.of(context)?.pushNamed(
-                                    RoutesGenerator.selectOutfitPage);
+                                    RoutesGenerator.selectOutfitPage, arguments: GenerateList());
                               },
                               child: Text(
                                 'Подобрать одежду',

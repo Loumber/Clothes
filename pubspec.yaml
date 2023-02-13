@@ -36,6 +36,7 @@ dependencies:
   sqlite3_flutter_libs: ^0.4.3
   path_provider: ^2.0.0
   path: ^1.8.2
+  scroll_snap_list: ^0.9.1
 
 dev_dependencies:
   flutter_test:
