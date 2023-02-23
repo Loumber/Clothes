@@ -182,15 +182,31 @@ class ListCard extends StatelessWidget {
           elevation: 5,
           color: CustomColors.light_coffee_tint,
           child: Container(
-            height: 70,
+            height: 120,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(13.0, 8.0, 13.0, 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(item.name, style: TextStyle( fontSize: 18, color: CustomColors.dark_brown_tint),),
-                  Text("категория: ${item.category}", style: TextStyle( fontSize: 12, color: CustomColors.dark_brown_tint),),
+
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(item.name, style: TextStyle( fontSize: 22, color: CustomColors.dark_brown_tint),),
+                      Text("Категория: ${item.category}", style: TextStyle( fontSize: 12, color: CustomColors.dark_brown_tint),),
+                    ],
+                  ),
+                  Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(22.0),
+                      image: DecorationImage(image: NetworkImage(item.imageUrl),
+                          fit: BoxFit.cover
+                      ),
+                    ),
+                  ),
                 ],
               ),
             )

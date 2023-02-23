@@ -5,7 +5,7 @@ class ClothesInfo {
   String description;
   String imageUrl;
 
-  ClothesInfo(this.name, this.category,this.description, {this.type = '', this.imageUrl = 'https://yandex.ru/images/search?rpt=simage&noreask=1&source=qa&text=Адриано+Челентано&stype=image&lr=39&parent-reqid=1676047020532346-17112497035958590208-vla1-5154-vla-l7-balancer-8080-BAL-4947'});
+  ClothesInfo(this.name, this.category,this.description, {this.type = '', this.imageUrl = 'https://gnel.am/images/product/8559/3ff6826f4711e054b45cd3112d2086e8.jpg'});
 
   bool contains(String query) {
     return (name.contains(query)) || (category.contains(query));
