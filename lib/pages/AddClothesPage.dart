@@ -1,5 +1,6 @@
 
 import 'package:clothes/DropdownCategories.dart';
+import 'package:clothes/ImageCapture.dart';
 import 'package:clothes/main.dart';
 import 'package:flutter/material.dart';
 import 'package:clothes/CustomColors.dart';
@@ -9,6 +10,7 @@ class AddClothesPage extends StatelessWidget {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   GlobalKey<DropdownCategoriesState> myWidgetStateKey = new GlobalKey<DropdownCategoriesState>(); // для получения данных о выбранной категории и типе myWidgetStateKey.currentState?.getSelectedCategory() ?? ''
+  GlobalKey<ImageCaptureState> photoWidgetStateKey = new GlobalKey<ImageCaptureState>(); // для получения данных о выбранной категории и типе myWidgetStateKey.currentState?.getSelectedCategory() ?? ''
 
 
   @override
@@ -17,8 +19,8 @@ class AddClothesPage extends StatelessWidget {
     return Center(
         child: Container(
             child: SizedBox(
-              height: 500,
-              width: 330,
+              height: MediaQuery.of(context).size.height * 0.73,
+              width: 350,
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -36,11 +38,18 @@ class AddClothesPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 0),
+                        child: ImageCapture(photoWidgetStateKey),
+                    ),
+
+
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: SizedBox(
                         height: 50,
-                        width: 250,
+                        width: 270,
                         child: TextField(
                           cursorColor: CustomColors.dark_brown_tint2,
                           controller: titleController,
@@ -69,19 +78,19 @@ class AddClothesPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      width: 250,
+                      width: 270,
                       child: DropdownCategories(myWidgetStateKey),
                     ),
 
                     SizedBox(
-                      width: 250,
-                      height: 150,
+                      width: 270,
+                      //height: 100,
                       child: Container(
                         child: TextField(
                           cursorColor: CustomColors.dark_brown_tint2,
                           controller: descriptionController,
-                          minLines: 5,
-                          maxLines: 5,
+                          minLines: 3,
+                          maxLines: 3,
                           style: TextStyle(
                               fontSize: 16,
                               color: CustomColors.dark_brown_tint2
