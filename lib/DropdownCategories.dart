@@ -4,12 +4,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DropdownCategories extends StatefulWidget {
-  DropdownCategories(Key key) : super(key: key);
+  String? category;
+  String? type;
+  DropdownCategories(Key key, {this.category, this.type}) : super(key: key);
   @override
-  State<StatefulWidget> createState() => DropdownCategoriesState();
+  State<StatefulWidget> createState() => DropdownCategoriesState(category: category, type: type);
   }
 
 class DropdownCategoriesState extends State<DropdownCategories>{
+  String? category;
+  String? type;
+  DropdownCategoriesState({this.category, this.type});
   List<String> categories = ["Верхняя одежда","Верх","Низ","Аксессуары","Обувь"];
   List<String> outerwearType = ["Жилеты","Куртки","Плащи","Пальто","Пуховики"];
   List<String> topType = ["Кофты","Рубашки и блузки","Пиджаки","Майки и топы","Худи и свитшоты","Футболки и поло","Джемперы и свитеры"];
@@ -24,6 +29,12 @@ class DropdownCategoriesState extends State<DropdownCategories>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    if (category != null) {
+      //selectedCategory = category;
+    }
+     if (type != null) {
+    //   selectedType = type;
+     }
     return Container(
         child: Row(
           children: [
@@ -134,6 +145,15 @@ class DropdownCategoriesState extends State<DropdownCategories>{
       selectedType = null;
     }
     );
+
+  }
+
+  setSelectedCategory(String category) {
+    selectedCategory = category;
+  }
+
+  setSelectedType(String type) {
+    selectedType = type;
   }
 
 

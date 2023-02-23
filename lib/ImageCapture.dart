@@ -6,15 +6,21 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageCapture extends StatefulWidget {
-  ImageCapture(Key key) : super(key: key);
+  String? path;
+  ImageCapture(Key key, {this.path}) : super(key: key);
   @override
-  createState() => ImageCaptureState();
+  createState() => ImageCaptureState(path);
 }
 
 class ImageCaptureState extends State<ImageCapture> {
+  String? path;
+  ImageCaptureState(this.path);
   /// Active image file
   File? imageFile;
 
+  void SetImage(String path) {
+    imageFile = File(path);
+  }
   /// Cropper plugin
   Future<void> _cropImage() async {
     File? cropped = await ImageCropper().cropImage(
@@ -80,6 +86,9 @@ class ImageCaptureState extends State<ImageCapture> {
 
   @override
   Widget build(BuildContext context) {
+    if (path != null && imageFile == null) {
+      SetImage(path!);
+    }
     return Padding(
       padding: const EdgeInsets.fromLTRB(40,0,0, 0),
       child: Row(
