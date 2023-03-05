@@ -31,10 +31,7 @@ class EditClothesPage extends StatelessWidget {
         shadowColor: null,
         elevation: 0,
         backgroundColor: CustomColors.light_coffee_clr,
-        title: Text(
-          'Clothes',
-          style: TextStyle(fontSize: 26, color: CustomColors.dark_brown_tint),
-        ),
+        title: const Text('Clothes', style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: CustomColors.dark_brown_tint),),
       ),
       backgroundColor: Colors.white,
       body: Center(

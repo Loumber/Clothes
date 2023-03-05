@@ -3,6 +3,7 @@ import 'package:clothes/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
 class DropdownCategories extends StatefulWidget {
   String? category;
   String? type;
@@ -30,7 +31,7 @@ class DropdownCategoriesState extends State<DropdownCategories>{
   Widget build(BuildContext context) {
     // TODO: implement build
     if (category != null) {
-      //selectedCategory = category;
+     // selectedCategory = category;
     }
      if (type != null) {
     //   selectedType = type;

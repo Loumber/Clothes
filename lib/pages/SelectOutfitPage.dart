@@ -53,6 +53,7 @@ class SelectOutfitPageState extends State<SelectOutfitPage> {
     cardsCount = itemsList.length;
     return Scaffold(
       appBar: AppBar(
+        elevation: 0.0,
         leading: BackButton(color: CustomColors.dark_coffee_clr),
         shadowColor: null,
         backgroundColor: CustomColors.light_coffee_clr,

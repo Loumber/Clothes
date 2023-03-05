@@ -42,23 +42,15 @@ class ClothesCard extends StatelessWidget {
                     width: 250,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25.0),
-                      //border: Border.all(color: CustomColors.light_coffee_tint),
+                      border: Border.all(color: CustomColors.light_coffee_tint),
                       color: Colors.transparent,
-                      boxShadow: [
-                        BoxShadow(
-                            color: CustomColors.light_coffee_tint,
-                            spreadRadius: 3,
-                            blurRadius: 14,
-                            blurStyle: BlurStyle.inner
-                        )
-                      ],
                       image: DecorationImage(image: NetworkImage(item.imageUrl),
                           fit: BoxFit.cover),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 5.0),
+                  padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 0.0),
                   child: Text(item.name,
                     style: TextStyle(
                         fontSize: 22,
@@ -73,7 +65,7 @@ class ClothesCard extends StatelessWidget {
                       children: [
                         Padding(
                           child: Container(
-                            width: 100,
+                            width: 120,
                             height: 40,
                             decoration: BoxDecoration(
                               color: CustomColors.dark_brown_tint2,
@@ -103,7 +95,7 @@ class ClothesCard extends StatelessWidget {
                         ),
                         Padding(
                           child: Container(
-                            width: 100,
+                            width: 120,
                             height: 40,
                             decoration: BoxDecoration(
                               color: CustomColors.dark_brown_tint2,
