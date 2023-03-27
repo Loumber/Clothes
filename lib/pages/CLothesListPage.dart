@@ -23,7 +23,9 @@ class ClothesListPage extends StatelessWidget {
         shadowColor: null,
         elevation: 0,
         backgroundColor: CustomColors.light_coffee_clr,
-        title: Text(arguments.title, style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: CustomColors.dark_brown_tint),),
+        title: Text(arguments.title, style: TextStyle(
+            fontSize: 26, fontWeight: FontWeight.bold,
+            color: CustomColors.dark_brown_tint),),
       ),
       backgroundColor: Colors.white,
        body:
@@ -173,7 +175,7 @@ class ListCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0),
       child: InkWell(
-        onTap: () => Navigator.of(context).pushNamed(RoutesGenerator.itemPage, arguments: item),
+        onTap: () => Navigator.of(context)?.pushNamed(RoutesGenerator.editClothesPage, arguments: item),
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),

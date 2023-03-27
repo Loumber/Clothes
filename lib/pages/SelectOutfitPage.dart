@@ -1,9 +1,12 @@
 import 'package:clothes/models/RouteArguments.dart';
+import 'package:clothes/pages/MainPage.dart';
 import 'package:flutter/material.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import '../ClothesCard.dart';
 import '../CustomColors.dart';
 import '../ClothesInfo.dart';
+import 'package:clothes/RoutesGenerator.dart';
+import 'package:clothes/Slider.dart';
 
 typedef IntCallback = void Function(int);
 
@@ -16,20 +19,25 @@ class SelectOutfitPage extends StatefulWidget {
 }
 
 class SelectOutfitPageState extends State<SelectOutfitPage> {
+  //WalkButton
+  String walkButtonText = 'Начать прогулку';
+  int walkButtonTapCounter = 0;
+  var walkButtonTextColor = CustomColors.dark_brown_tint;
+  var walkButtonBackColor = Colors.white;
 
   int _focusedItem = 0;
   late List<ClothesInfo> itemsList;
   late int cardsCount;
 
   void DeleteItem(int index) {
-    // itemsList.removeAt(index);
-    // cardsCount--;
+     //itemsList.removeAt(index);
+     //cardsCount--;
   }
 
   void ChangeItem(int index) {
-    // itemsList.removeAt(index);
-    // itemsList.insert(index,ClothesInfo('Обновка', '2', "2",
-    //     imageUrl: "https://i.ebayimg.com/00/s/ODAwWDkwMA==/z/HOwAAOSwpRRWmZqH/\$_57.JPG?set_id=880000500F"));
+    //itemsList.removeAt(index);
+    //itemsList.insert(index,ClothesInfo('Обновка', '2', "2",
+         //imageUrl: "https://i.ebayimg.com/00/s/ODAwWDkwMA==/z/HOwAAOSwpRRWmZqH/\$_57.JPG?set_id=880000500F"));
   }
 
   void CallBackFunc(int index) {
@@ -91,9 +99,147 @@ class SelectOutfitPageState extends State<SelectOutfitPage> {
                 },
               ),
             ),
+
+            SizedBox(height: 30,),
+
+            Container(
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width * 0.75,
+              height: 70,
+              decoration: BoxDecoration(
+                  color: walkButtonBackColor,
+                  border: Border.all(color: CustomColors
+                      .light_coffee_tint),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [BoxShadow(
+                    color: CustomColors.light_coffee_tint,
+                    spreadRadius: 1,
+                    blurRadius: 10,
+                    blurStyle: BlurStyle.normal,
+
+                  )
+                  ]
+              ),
+              child: Center(
+                child: GestureDetector(
+                  onTap: () {
+                      if (walkButtonTapCounter == 0) {
+                        setState(() {
+                          walkButtonTapCounter++;
+
+                          walkButtonText = 'Закончить прогулку';
+                          walkButtonTextColor = Colors.white;
+                          walkButtonBackColor = CustomColors.dark_brown_tint2;
+                        });
+                      }
+                      else {
+                        showDialog<void>(
+                        context: context,
+                        barrierDismissible: true,
+                        builder: (BuildContext context) {
+                          return EvalationWindow();
+                        },
+                      );
+                      }
+                  },
+                  child: Text(
+                    walkButtonText,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 21,
+                      letterSpacing: 0.0,
+                      color: walkButtonTextColor,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class EvalationWindow extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context){
+    return Dialog(
+        backgroundColor: Colors.white,
+        insetPadding: EdgeInsets.all(10),
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Container(
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width * 0.95,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height * 0.30,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: CustomColors
+                        .light_coffee_tint),
+                    boxShadow: [BoxShadow(
+                      color: CustomColors.light_coffee_tint,
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      blurStyle: BlurStyle.normal,
+                    )
+                    ]
+                ),
+              padding: EdgeInsets.all(20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                      'Выберете оценку:',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: CustomColors.dark_brown_tint2,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 32,
+                      )
+                  ),
+                  SizedBox(height: 45),
+                  EvalationSlider(),
+                  SizedBox(height: 15),
+                  Container(
+                    width: 125,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: CustomColors.dark_brown_tint2,
+                      border: Border.all(color : CustomColors.dark_brown_tint2, width: 2.5),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context)?.pushNamed(
+                                RoutesGenerator.homePage, arguments: GenerateList());
+                          },
+                          child: Text(
+                            "Оценить",
+                            style: TextStyle(
+                              fontSize: 18,
+                              letterSpacing: 0.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                    ),
+                  ),
+                ],)
+              ),
+          ],
+        )
     );
   }
 }
