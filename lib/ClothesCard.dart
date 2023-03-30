@@ -9,15 +9,16 @@ typedef IntCallback = void Function(int);
 
 class ClothesCard extends StatelessWidget {
   ClothesInfo item;
+  bool isEnabled;
   IntCallback callback;
-  ClothesCard(this.item,this.callback);
+  ClothesCard(this.item,this.isEnabled,this.callback);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
       child: SizedBox(
-        height: 450,
-        width: 330,
+        height: 400,
+        width: 300,
         child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -50,7 +51,7 @@ class ClothesCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 0.0),
+                  padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 0.0),
                   child: Text(item.name,
                     style: TextStyle(
                         fontSize: 22,
@@ -58,7 +59,7 @@ class ClothesCard extends StatelessWidget {
                         color: CustomColors.dark_brown_tint),),
                 ),
                 Padding(
-                    padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 15.0),
+                    padding: EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 10.0),
                   child: Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -68,14 +69,16 @@ class ClothesCard extends StatelessWidget {
                             width: 120,
                             height: 40,
                             decoration: BoxDecoration(
-                              color: CustomColors.dark_brown_tint2,
-                              border: Border.all(color : CustomColors.dark_brown_tint2, width: 2.5),
+                              color: isEnabled ? CustomColors.dark_brown_tint2 : CustomColors.grey_tint,
+                              border: Border.all(color : isEnabled ? CustomColors.dark_brown_tint2 : CustomColors.grey_tint, width: 2.5),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Center(
                               child: GestureDetector(
                                 onTap: () {
-                                  callback(1);
+                                  if (isEnabled) {
+                                    callback(1);
+                                  }
                                 },
 
                                 child: Text(
@@ -85,7 +88,7 @@ class ClothesCard extends StatelessWidget {
                                     //fontWeight: FontWeight.w100,
                                     fontSize: 18,
                                     letterSpacing: 0.0,
-                                    color: Colors.white,
+                                    color: isEnabled ? Colors.white : CustomColors.grey,
                                   ),
                                 ),
                               ),
@@ -98,14 +101,16 @@ class ClothesCard extends StatelessWidget {
                             width: 120,
                             height: 40,
                             decoration: BoxDecoration(
-                              color: CustomColors.dark_brown_tint2,
-                              border: Border.all(color : CustomColors.dark_brown_tint2, width: 2.5),
+                              color: isEnabled ? CustomColors.dark_brown_tint2 : CustomColors.grey_tint,
+                              border: Border.all(color : isEnabled ? CustomColors.dark_brown_tint2 : CustomColors.grey_tint, width: 2.5),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Center(
                               child: GestureDetector(
                                 onTap: () {
-                                  callback(2);
+                                  if (isEnabled) {
+                                    callback(2);
+                                  }
                                 },
 
                                 child: Text(
@@ -115,7 +120,7 @@ class ClothesCard extends StatelessWidget {
                                     //fontWeight: FontWeight.w100,
                                     fontSize: 18,
                                     letterSpacing: 0.0,
-                                    color: Colors.white,
+                                    color:  isEnabled ? Colors.white : CustomColors.grey,
                                   ),
                                 ),
                               ),

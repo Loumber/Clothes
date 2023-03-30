@@ -78,18 +78,18 @@ class SelectOutfitPageState extends State<SelectOutfitPage> {
         padding: EdgeInsets.fromLTRB(0, MediaQuery
             .of(context)
             .size
-            .height / 9, 0, 0),
+            .height / 13, 0, 0),
         child: Column(
           children: [
             Container(
-              height: 450,
+              height: 400,
               // width: 400,
               child: ScrollSnapList(
                 itemBuilder: (BuildContext context, int index) {
-                  return ClothesCard(itemsList.elementAt(index % cardsCount),
+                  return ClothesCard(itemsList.elementAt(index % cardsCount), walkButtonTapCounter == 0 ? true : false,
                       CallBackFunc);
                 },
-                itemSize: 330,
+                itemSize: 300,
                 dynamicItemSize: true,
                 itemCount: cardsCount,
                 onItemFocus: (int index) => {
