@@ -2,14 +2,13 @@
 import 'package:clothes/pages/AddClothesPage.dart';
 import 'package:clothes/Func_icons.dart';
 import 'package:clothes/pages/WardrobePage.dart';
-import 'package:clothes/states/WeatherState.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:clothes/CustomColors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bloc/WeatherBloc.dart';
-import 'events/WeatherEvent.dart';
+
 import 'pages/MainPage.dart';
 
 
@@ -28,7 +27,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     WardrobePage(),
-    MainPage(),
+    //MainPage(),
     AddClothesPage()
   ];
 
@@ -52,13 +51,13 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
       ),
       backgroundColor: Colors.white,
 
-      body : BlocProvider(
+      /*body : BlocProvider(
          create: (context) => WeatherBloc(),//WeatherBloc('Ростов-на-Дону'),
          child: BlocBuilder<WeatherBloc, WeatherState>(
          builder: (context, state) {
            return _widgetOptions.elementAt(_selectedIndex);
          },),
-      ),
+      ),*/
       bottomNavigationBar: SizedBox(
         height: 55,
         child: BottomNavigationBar(

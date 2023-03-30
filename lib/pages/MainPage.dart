@@ -7,13 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../ClothesInfo.dart';
 import '../CustomColors.dart';
 import '../RoutesGenerator.dart';
-import '../bloc/WeatherBloc.dart';
-import '../components/WeatherCardWrapper.dart';
-import '../events/WeatherEvent.dart';
-import '../states/WeatherState.dart';
+
 import 'package:geolocator/geolocator.dart';
 
-import '../states/WeatherState.dart';
+
 
 List<ClothesInfo> GenerateList() {
   List<ClothesInfo> clothesList = <ClothesInfo>[];
@@ -22,13 +19,14 @@ List<ClothesInfo> GenerateList() {
   clothesList.add(ClothesInfo('Темные джинсы', '1', "2", imageUrl: "https://cdn.shopify.com/s/files/1/0143/6991/4937/products/4.png?v=1574486390"));
   return clothesList;
 }
+/*
 class MainPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => MainPageState();
 
 }
-
-
+*/
+/*
 class MainPageState extends State<MainPage>{
   late WeatherState wstate;
 
@@ -38,9 +36,9 @@ class MainPageState extends State<MainPage>{
       BlocProvider.of<WeatherBloc>(context).add(WeatherRequested(city: query));
     }));
   }
+*/
 
-
-  @override
+  /*@override
   Widget build(BuildContext context) {
     wstate = context.watch<WeatherBloc>().state;
     // TODO: implement build
@@ -170,7 +168,7 @@ class MainPageState extends State<MainPage>{
             );
           }
         //}
-}
+}*/
 
 class MySearchDelegate extends SearchDelegate {
   String selectedResult = '';
