@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
           ),
 
-      debugShowCheckedModeBanner: false,
+      //debugShowCheckedModeBanner: false,
     );
   }
 }

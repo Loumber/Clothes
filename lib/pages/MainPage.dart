@@ -32,6 +32,7 @@ class MainPage extends StatefulWidget {
 class MainPageState extends State<MainPage>{
   late WeatherState wstate;
 
+
   void onTap() {
     showSearch(
         context: context, delegate: MySearchDelegate((query) {
@@ -151,7 +152,10 @@ class MainPageState extends State<MainPage>{
                     )
                 )
             );
-          };
+          }
+          else if (wstate is WeatherLoadFailure)
+            throw Exception("123");
+          else {
             return Scaffold(
               backgroundColor: Colors.white,
               body: Center(
@@ -168,6 +172,7 @@ class MainPageState extends State<MainPage>{
                 ),
               ),
             );
+          }
           }
         //}
 }

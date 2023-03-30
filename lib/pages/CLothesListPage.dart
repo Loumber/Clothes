@@ -1,7 +1,9 @@
+import 'package:clothes/clothesBloc/ClothesBloc.dart';
 import 'package:clothes/main.dart';
 import 'package:clothes/models/RouteArguments.dart';
 import 'package:clothes/RoutesGenerator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../CustomColors.dart';
 import '../models/ClothesInfo.dart';
@@ -28,9 +30,14 @@ class ClothesListPage extends StatelessWidget {
             color: CustomColors.dark_brown_tint),),
       ),
       backgroundColor: Colors.white,
-       body:
-
-           new ClothesList()
+       body: BlocProvider(
+         create: (context) => ClothesBloc()..add(ClothesGetEvent(category: arguments.title)),
+         child: BlocBuilder<ClothesBloc, ClothesState> (
+             builder: (context, state) {
+               return ClothesList();
+             }
+           ),
+       ),
 
        //Center(
       //   child: Container(
@@ -52,7 +59,8 @@ class ClothesList extends StatefulWidget {
 }
 
 class _ClothesListState extends State<ClothesList> {
-  _ClothesListState();
+  _ClothesListState() {
+  }
 
   TextEditingController editingController = TextEditingController();
 
@@ -94,26 +102,22 @@ class _ClothesListState extends State<ClothesList> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<ClothesInfo>>(
-      future: db!.parseClotheToClothesInfo(db!.allClotheEntries),
-      builder: (context, snapshot) {
+    var clState = context.watch<ClothesBloc>().state;
 
-        if (snapshot.connectionState != ConnectionState.done) {
-          return const Center(
-            child: CircularProgressIndicator()
-          );
-        }
+    if (clState is ClothesLoadedState) {
+      setState(() {
+        duplicateItems = (clState as ClothesLoadedState).clothesInfo;
+        items.clear();
+        items.addAll(duplicateItems);
+      });
+    }
 
-        items = snapshot.data!;
-        print(items.length);
-        items.forEach((element) {print(element.name);});
+    return  Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
 
-        return Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-
-              SizedBox(height: 40,),
+            SizedBox(height: 40,),
 
             Padding(
               padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 20.0),
@@ -123,7 +127,7 @@ class _ClothesListState extends State<ClothesList> {
                     style: TextStyle(color: CustomColors.light_coffee_clr),
                     onChanged: (value) {
                       filterSearchResults(value);
-                      },
+                    },
                     controller: editingController,
                     decoration: const InputDecoration(
                       suffixStyle: TextStyle(color: CustomColors.light_coffee_clr),
@@ -146,24 +150,23 @@ class _ClothesListState extends State<ClothesList> {
                 ),
               ),
             ),
-              Expanded(
-                child: Theme(
+            Expanded(
+              child: Theme(
                   data: Theme.of(context).copyWith(
                       colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.dark_coffee_clr)),
-                  child: ListView.builder(
+                  child: (clState is ClothesLoadedState) ? ListView.builder(
                     shrinkWrap: true,
                     itemCount: items.length,
                     itemBuilder: (context, index) {
                       return ListCard(items[index]);
-                      },
-                  ),
-                ),
+                    },
+                  ) : Center(child: CircularProgressIndicator())
               ),
-            ],
-          ),
-        );
-      }
+            ),
+          ],
+        ),
       );
+
   }
 }
 

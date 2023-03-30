@@ -53,7 +53,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
       backgroundColor: Colors.white,
 
       body : BlocProvider(
-         create: (context) => WeatherBloc(),//WeatherBloc('Ростов-на-Дону'),
+         create: (context) => WeatherBloc()..add(WeatherCurrentPositionRequested()),//WeatherBloc('Ростов-на-Дону'),
          child: BlocBuilder<WeatherBloc, WeatherState>(
          builder: (context, state) {
            return _widgetOptions.elementAt(_selectedIndex);

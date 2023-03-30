@@ -13,22 +13,9 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     on<WeatherCurrentPositionRequested>(_newWeatherCurrentPositionRequested);
   }
 
-  // @override
-  // Stream<WeatherState> mapEventToState(WeatherEvent event) async* {
-  //   if (event is WeatherRequested) {
-  //     yield WeatherLoadInProgress();
-  //     try {
-  //       final Weather weather =
-  //       await WeatherService.fetchCurrentWeather(query: event.city);
-  //       yield WeatherLoadSuccess(
-  //           weather: weather);
-  //     } catch (_) {
-  //       yield WeatherLoadFailure();
-  //     }
-  //   }
-  // }
 
-   _newWeatherRequested(WeatherRequested event, Emitter<WeatherState> emit) async* {
+
+   _newWeatherRequested(WeatherRequested event, Emitter<WeatherState> emit) async {
     emit(WeatherLoadInProgress());
     try {
       final Weather weather = await WeatherService.fetchCurrentWeather(
@@ -40,7 +27,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   }
 
   _newWeatherCurrentPositionRequested(WeatherCurrentPositionRequested event,
-      Emitter<WeatherState> emit) async* {
+      Emitter<WeatherState> emit) async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.whileInUse ||
         permission == LocationPermission.always) {
