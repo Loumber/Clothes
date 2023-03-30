@@ -1,5 +1,5 @@
 import 'package:clothes/ImageCapture.dart';
-import 'package:clothes/ClothesInfo.dart';
+import 'package:clothes/models/ClothesInfo.dart';
 import 'package:clothes/DropdownCategories.dart';
 import 'package:clothes/main.dart';
 import 'dart:io';

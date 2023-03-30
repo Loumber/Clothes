@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import '../ClothesCard.dart';
 import '../CustomColors.dart';
-import '../ClothesInfo.dart';
+import '../models/ClothesInfo.dart';
 import 'package:clothes/RoutesGenerator.dart';
 import 'package:clothes/Slider.dart';
 

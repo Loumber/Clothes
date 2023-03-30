@@ -4,7 +4,7 @@ import 'package:clothes/RoutesGenerator.dart';
 import 'package:flutter/material.dart';
 
 import '../CustomColors.dart';
-import '../ClothesInfo.dart';
+import '../models/ClothesInfo.dart';
 import '../database/database.dart';
 
 class ClothesListPage extends StatelessWidget {
@@ -98,10 +98,11 @@ class _ClothesListState extends State<ClothesList> {
       future: db!.parseClotheToClothesInfo(db!.allClotheEntries),
       builder: (context, snapshot) {
 
-        if (snapshot.connectionState != ConnectionState.done)
+        if (snapshot.connectionState != ConnectionState.done) {
           return const Center(
             child: CircularProgressIndicator()
           );
+        }
 
         items = snapshot.data!;
         print(items.length);
@@ -114,37 +115,37 @@ class _ClothesListState extends State<ClothesList> {
 
               SizedBox(height: 40,),
 
-            // Padding(
-            //   padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 20.0),
-            //   child: SizedBox(
-            //     width: 300,
-            //     child: TextField(
-            //         style: TextStyle(color: CustomColors.light_coffee_clr),
-            //         onChanged: (value) {
-            //           filterSearchResults(value);
-            //           },
-            //         controller: editingController,
-            //         decoration: const InputDecoration(
-            //           suffixStyle: TextStyle(color: CustomColors.light_coffee_clr),
-            //           labelStyle: TextStyle(color: CustomColors.light_coffee_clr),
-            //           labelText: "Поиск",
-            //           prefixIcon: Icon(Icons.search,color: CustomColors.light_coffee_clr,),
-            //           border: OutlineInputBorder(
-            //               borderRadius: BorderRadius.all(Radius.circular(25.0)),
-            //               borderSide: BorderSide(color: CustomColors.light_coffee_clr)
-            //           ),
-            //           focusedBorder: OutlineInputBorder(
-            //               borderRadius: BorderRadius.all(Radius.circular(25.0)),
-            //               borderSide: BorderSide(color: CustomColors.light_coffee_clr)
-            //           ),
-            //           enabledBorder: OutlineInputBorder(
-            //               borderRadius: BorderRadius.all(Radius.circular(25.0)),
-            //               borderSide: BorderSide(color: CustomColors.light_coffee_clr)
-            //           ),
-            //         )
-            //     ),
-            //   ),
-            // ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 20.0),
+              child: SizedBox(
+                width: 300,
+                child: TextField(
+                    style: TextStyle(color: CustomColors.light_coffee_clr),
+                    onChanged: (value) {
+                      filterSearchResults(value);
+                      },
+                    controller: editingController,
+                    decoration: const InputDecoration(
+                      suffixStyle: TextStyle(color: CustomColors.light_coffee_clr),
+                      labelStyle: TextStyle(color: CustomColors.light_coffee_clr),
+                      labelText: "Поиск",
+                      prefixIcon: Icon(Icons.search,color: CustomColors.light_coffee_clr,),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+                      ),
+                    )
+                ),
+              ),
+            ),
               Expanded(
                 child: Theme(
                   data: Theme.of(context).copyWith(

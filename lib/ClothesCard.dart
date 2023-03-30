@@ -1,6 +1,6 @@
 
 
-import 'package:clothes/ClothesInfo.dart';
+import 'package:clothes/models/ClothesInfo.dart';
 import 'package:clothes/pages/SelectOutfitPage.dart';
 import 'package:flutter/material.dart';
 
