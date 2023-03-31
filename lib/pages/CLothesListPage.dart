@@ -157,7 +157,7 @@ class ListCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(item.name, style: TextStyle( fontSize: 22, color: CustomColors.dark_brown_tint),),
-                      Text("Категория: ${item.category}", style: TextStyle( fontSize: 12, color: CustomColors.dark_brown_tint),),
+                      Text("Тип: ${item.type}", style: TextStyle( fontSize: 12, color: CustomColors.dark_brown_tint),),
                     ],
                   ),
                   Container(

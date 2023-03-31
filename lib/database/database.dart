@@ -35,7 +35,7 @@ class AppDb extends _$AppDb {
 
   Future<List<ClothesInfo>> parseClotheToClothesInfo(Future<List<Clothe>> ll) async {
     var rr = await ll;
-    return rr.map((cl) => ClothesInfo(cl.name, cl.category, cl.description))
+    return rr.map((cl) => ClothesInfo(cl.name, cl.category, cl.description, type: cl.type))
         .toList();
   }
 
