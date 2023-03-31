@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import '../ClothesCard.dart';
 import '../CustomColors.dart';
-import '../ClothesInfo.dart';
+import '../models/ClothesInfo.dart';
 import 'package:clothes/RoutesGenerator.dart';
 import 'package:clothes/Slider.dart';
 
@@ -78,18 +78,18 @@ class SelectOutfitPageState extends State<SelectOutfitPage> {
         padding: EdgeInsets.fromLTRB(0, MediaQuery
             .of(context)
             .size
-            .height / 13, 0, 0),
+            .height / 9, 0, 0),
         child: Column(
           children: [
             Container(
-              height: 400,
+              height: 450,
               // width: 400,
               child: ScrollSnapList(
                 itemBuilder: (BuildContext context, int index) {
-                  return ClothesCard(itemsList.elementAt(index % cardsCount), walkButtonTapCounter == 0 ? true : false,
+                  return ClothesCard(itemsList.elementAt(index % cardsCount),
                       CallBackFunc);
                 },
-                itemSize: 300,
+                itemSize: 330,
                 dynamicItemSize: true,
                 itemCount: cardsCount,
                 onItemFocus: (int index) => {

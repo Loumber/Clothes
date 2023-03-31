@@ -8,46 +8,26 @@ import 'package:geolocator/geolocator.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   //final String cityName;
-  WeatherBloc() : super(null) {
-    add(WeatherCurrentPositionRequested());
+  WeatherBloc() : super(WeatherInitial()) {
+    on<WeatherRequested>(_newWeatherRequested);
+    on<WeatherCurrentPositionRequested>(_newWeatherCurrentPositionRequested);
   }
 
-  // @override
-  // Stream<WeatherState> mapEventToState(WeatherEvent event) async* {
-  //   if (event is WeatherRequested) {
-  //     yield WeatherLoadInProgress();
-  //     try {
-  //       final Weather weather =
-  //       await WeatherService.fetchCurrentWeather(query: event.city);
-  //       yield WeatherLoadSuccess(
-  //           weather: weather);
-  //     } catch (_) {
-  //       yield WeatherLoadFailure();
-  //     }
-  //   }
-  // }
-  @override
-  Stream<WeatherState> mapEventToState(WeatherEvent event) async* {
-    if (event is WeatherRequested) {
-      yield* _newWeatherRequested(event);
-    }
-    if (event is WeatherCurrentPositionRequested) {
-      yield* _newWeatherCurrentPositionRequested();
-    }
-  }
 
-  Stream<WeatherState> _newWeatherRequested(WeatherRequested event) async* {
-    yield WeatherLoadInProgress();
+
+   _newWeatherRequested(WeatherRequested event, Emitter<WeatherState> emit) async {
+    emit(WeatherLoadInProgress());
     try {
       final Weather weather = await WeatherService.fetchCurrentWeather(
           query: event.city, lon: event.lon, lat: event.lat);
-      yield WeatherLoadSuccess(weather: weather);
+      emit(WeatherLoadSuccess(weather: weather));
     } catch (_) {
-      yield WeatherLoadFailure();
+      emit(WeatherLoadFailure());
     }
   }
 
-  Stream<WeatherState> _newWeatherCurrentPositionRequested() async* {
+  _newWeatherCurrentPositionRequested(WeatherCurrentPositionRequested event,
+      Emitter<WeatherState> emit) async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.whileInUse ||
         permission == LocationPermission.always) {

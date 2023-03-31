@@ -3,7 +3,7 @@ import 'package:clothes/database/database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../ClothesInfo.dart';
+import '../models/ClothesInfo.dart';
 import '../CustomColors.dart';
 import '../RoutesGenerator.dart';
 import '../models/RouteArguments.dart';

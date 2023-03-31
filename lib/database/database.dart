@@ -5,7 +5,7 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
-import '../ClothesInfo.dart';
+import '../models/ClothesInfo.dart';
 
 part 'database.g.dart';
 
@@ -35,13 +35,8 @@ class AppDb extends _$AppDb {
 
   Future<List<ClothesInfo>> parseClotheToClothesInfo(Future<List<Clothe>> ll) async {
     var rr = await ll;
-    return rr.map((cl) => ClothesInfo(cl.name, cl.category, cl.description))
+    return rr.map((cl) => ClothesInfo(cl.name, cl.category, cl.description, type: cl.type))
         .toList();
-  }
-
-  Future<List<Clothe>> getCategory(String category) async {
-    return (select(clothes)
-      ..where((tbl) => tbl.category.equals(category))).get();
   }
 
   // Future<List<ClothesInfo>> getCategory(String category) async {

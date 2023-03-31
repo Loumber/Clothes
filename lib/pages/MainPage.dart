@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../ClothesInfo.dart';
+import '../models/ClothesInfo.dart';
 import '../CustomColors.dart';
 import '../RoutesGenerator.dart';
 import '../bloc/WeatherBloc.dart';
@@ -31,6 +31,7 @@ class MainPage extends StatefulWidget {
 
 class MainPageState extends State<MainPage>{
   late WeatherState wstate;
+
 
   void onTap() {
     showSearch(
@@ -151,7 +152,10 @@ class MainPageState extends State<MainPage>{
                     )
                 )
             );
-          };
+          }
+          else if (wstate is WeatherLoadFailure)
+            throw Exception("123");
+          else {
             return Scaffold(
               backgroundColor: Colors.white,
               body: Center(
@@ -168,6 +172,7 @@ class MainPageState extends State<MainPage>{
                 ),
               ),
             );
+          }
           }
         //}
 }

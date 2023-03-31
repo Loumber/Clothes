@@ -140,8 +140,8 @@ class AddClothesPage extends StatelessWidget {
                                       ));
 
                                       db!.addClothesFromStrings(titleController.value.text,
-                                        myWidgetStateKey.currentState?.selectedType as String,
                                         myWidgetStateKey.currentState?.selectedCategory as String,
+                                        myWidgetStateKey.currentState?.selectedType as String,
                                         descriptionController.value.text,
                                       );
 

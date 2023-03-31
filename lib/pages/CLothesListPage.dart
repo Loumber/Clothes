@@ -1,10 +1,12 @@
+import 'package:clothes/clothesBloc/ClothesBloc.dart';
 import 'package:clothes/main.dart';
 import 'package:clothes/models/RouteArguments.dart';
 import 'package:clothes/RoutesGenerator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../CustomColors.dart';
-import '../ClothesInfo.dart';
+import '../models/ClothesInfo.dart';
 import '../database/database.dart';
 
 class ClothesListPage extends StatelessWidget {
@@ -28,9 +30,14 @@ class ClothesListPage extends StatelessWidget {
             color: CustomColors.dark_brown_tint),),
       ),
       backgroundColor: Colors.white,
-       body:
-
-           new ClothesList()
+       body: BlocProvider(
+         create: (context) => ClothesBloc()..add(ClothesGetEvent(category: arguments.title)),
+         child: BlocBuilder<ClothesBloc, ClothesState> (
+             builder: (context, state) {
+               return ClothesList();
+             }
+           ),
+       ),
 
        //Center(
       //   child: Container(
@@ -52,117 +59,71 @@ class ClothesList extends StatefulWidget {
 }
 
 class _ClothesListState extends State<ClothesList> {
-  _ClothesListState();
+  _ClothesListState() {
+  }
 
   TextEditingController editingController = TextEditingController();
 
-  //весь список для категории
-  List<ClothesInfo> duplicateItems = <ClothesInfo>[];
-  //список отображаемых предметов
-  var items = <ClothesInfo>[];
-
-  @override
-  void initState() {
-    //duplicateItems = await AppDb().getCategory(title);
-    items.addAll(duplicateItems);
-    super.initState();
-  }
-
-  void filterSearchResults(String query) {
-    List<ClothesInfo> searchList = <ClothesInfo>[];
-    searchList.addAll(duplicateItems);
-    if(query.isNotEmpty) {
-      List<ClothesInfo> listData = <ClothesInfo>[];
-      searchList.forEach((item) {
-        if(item.contains(query)) {
-          listData.add(item);
-        }
-      });
-      setState(() {
-        items.clear();
-        items.addAll(listData);
-      });
-      return;
-    } else {
-      setState(() {
-        items.clear();
-        items.addAll(duplicateItems);
-      });
-    }
-
-  }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<ClothesInfo>>(
-      future: db!.parseClotheToClothesInfo(db!.allClotheEntries),
-      builder: (context, snapshot) {
+    var clBloc = context.watch<ClothesBloc>();
 
-        if (snapshot.connectionState != ConnectionState.done)
-          return const Center(
-            child: CircularProgressIndicator()
-          );
+    return  Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
 
-        items = snapshot.data!;
-        print(items.length);
-        items.forEach((element) {print(element.name);});
+            SizedBox(height: 40,),
 
-        return Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-
-              SizedBox(height: 40,),
-
-            // Padding(
-            //   padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 20.0),
-            //   child: SizedBox(
-            //     width: 300,
-            //     child: TextField(
-            //         style: TextStyle(color: CustomColors.light_coffee_clr),
-            //         onChanged: (value) {
-            //           filterSearchResults(value);
-            //           },
-            //         controller: editingController,
-            //         decoration: const InputDecoration(
-            //           suffixStyle: TextStyle(color: CustomColors.light_coffee_clr),
-            //           labelStyle: TextStyle(color: CustomColors.light_coffee_clr),
-            //           labelText: "Поиск",
-            //           prefixIcon: Icon(Icons.search,color: CustomColors.light_coffee_clr,),
-            //           border: OutlineInputBorder(
-            //               borderRadius: BorderRadius.all(Radius.circular(25.0)),
-            //               borderSide: BorderSide(color: CustomColors.light_coffee_clr)
-            //           ),
-            //           focusedBorder: OutlineInputBorder(
-            //               borderRadius: BorderRadius.all(Radius.circular(25.0)),
-            //               borderSide: BorderSide(color: CustomColors.light_coffee_clr)
-            //           ),
-            //           enabledBorder: OutlineInputBorder(
-            //               borderRadius: BorderRadius.all(Radius.circular(25.0)),
-            //               borderSide: BorderSide(color: CustomColors.light_coffee_clr)
-            //           ),
-            //         )
-            //     ),
-            //   ),
-            // ),
-              Expanded(
-                child: Theme(
-                  data: Theme.of(context).copyWith(
-                      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.dark_coffee_clr)),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      return ListCard(items[index]);
-                      },
-                  ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 20.0),
+              child: SizedBox(
+                width: 300,
+                child: TextField(
+                    style: TextStyle(color: CustomColors.light_coffee_clr),
+                    onChanged: (value) {
+                      clBloc.add(ClothesFilterEvent(value));
+                    },
+                    controller: editingController,
+                    decoration: const InputDecoration(
+                      suffixStyle: TextStyle(color: CustomColors.light_coffee_clr),
+                      labelStyle: TextStyle(color: CustomColors.light_coffee_clr),
+                      labelText: "Поиск",
+                      prefixIcon: Icon(Icons.search,color: CustomColors.light_coffee_clr,),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+                      ),
+                    )
                 ),
               ),
-            ],
-          ),
-        );
-      }
+            ),
+            Expanded(
+              child: Theme(
+                  data: Theme.of(context).copyWith(
+                      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.dark_coffee_clr)),
+                  child: (clBloc.state is ClothesLoadedState) ? ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: clBloc.filteredData.length,
+                    itemBuilder: (context, index) {
+                      return ListCard(clBloc.filteredData[index]);
+                    },
+                  ) : Center(child: CircularProgressIndicator())
+              ),
+            ),
+          ],
+        ),
       );
+
   }
 }
 
@@ -196,7 +157,7 @@ class ListCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(item.name, style: TextStyle( fontSize: 22, color: CustomColors.dark_brown_tint),),
-                      Text("Категория: ${item.category}", style: TextStyle( fontSize: 12, color: CustomColors.dark_brown_tint),),
+                      Text("Тип: ${item.type}", style: TextStyle( fontSize: 12, color: CustomColors.dark_brown_tint),),
                     ],
                   ),
                   Container(
