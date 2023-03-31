@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:oen_meteo_api/open_meteo_api.dart' hide Weather;
+import 'package:open_meteo_api/open_meteo_api.dart' hide Weather;
 import 'package:weather_repository/weather_repository.dart';
 
 class WeatherRepository {
