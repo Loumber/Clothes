@@ -23,4 +23,9 @@ class ClothesInfo {
   String GetDescription() {
     return this.description;
   }
+
+  @override
+  String toString() {
+    return '$name $category';
+  }
 }

@@ -64,53 +64,10 @@ class _ClothesListState extends State<ClothesList> {
 
   TextEditingController editingController = TextEditingController();
 
-  //весь список для категории
-  List<ClothesInfo> duplicateItems = <ClothesInfo>[];
-  //список отображаемых предметов
-  var items = <ClothesInfo>[];
-
-  @override
-  void initState() {
-    //duplicateItems = await AppDb().getCategory(title);
-    items.addAll(duplicateItems);
-    super.initState();
-  }
-
-  void filterSearchResults(String query) {
-    List<ClothesInfo> searchList = <ClothesInfo>[];
-    searchList.addAll(duplicateItems);
-    if(query.isNotEmpty) {
-      List<ClothesInfo> listData = <ClothesInfo>[];
-      searchList.forEach((item) {
-        if(item.contains(query)) {
-          listData.add(item);
-        }
-      });
-      setState(() {
-        items.clear();
-        items.addAll(listData);
-      });
-      return;
-    } else {
-      setState(() {
-        items.clear();
-        items.addAll(duplicateItems);
-      });
-    }
-
-  }
 
   @override
   Widget build(BuildContext context) {
-    var clState = context.watch<ClothesBloc>().state;
-
-    if (clState is ClothesLoadedState) {
-      setState(() {
-        duplicateItems = (clState as ClothesLoadedState).clothesInfo;
-        items.clear();
-        items.addAll(duplicateItems);
-      });
-    }
+    var clBloc = context.watch<ClothesBloc>();
 
     return  Container(
         child: Column(
@@ -126,7 +83,7 @@ class _ClothesListState extends State<ClothesList> {
                 child: TextField(
                     style: TextStyle(color: CustomColors.light_coffee_clr),
                     onChanged: (value) {
-                      filterSearchResults(value);
+                      clBloc.add(ClothesFilterEvent(value));
                     },
                     controller: editingController,
                     decoration: const InputDecoration(
@@ -154,11 +111,11 @@ class _ClothesListState extends State<ClothesList> {
               child: Theme(
                   data: Theme.of(context).copyWith(
                       colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.dark_coffee_clr)),
-                  child: (clState is ClothesLoadedState) ? ListView.builder(
+                  child: (clBloc.state is ClothesLoadedState) ? ListView.builder(
                     shrinkWrap: true,
-                    itemCount: items.length,
+                    itemCount: clBloc.filteredData.length,
                     itemBuilder: (context, index) {
-                      return ListCard(items[index]);
+                      return ListCard(clBloc.filteredData[index]);
                     },
                   ) : Center(child: CircularProgressIndicator())
               ),
