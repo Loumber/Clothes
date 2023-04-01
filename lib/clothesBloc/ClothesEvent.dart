@@ -13,3 +13,9 @@ class ClothesFilterEvent implements ClothesEvent {
   String query;
   ClothesFilterEvent(this.query);
 }
+
+
+class ClothesSelectionEvent implements ClothesEvent {
+  int t;
+  ClothesSelectionEvent(this.t);
+}

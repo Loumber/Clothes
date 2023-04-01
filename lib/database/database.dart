@@ -39,6 +39,12 @@ class AppDb extends _$AppDb {
         .toList();
   }
 
+  Future<List<Clothe>> getType(String type)
+  {
+    /// TO DO возвращать определенный тип
+    return select(clothes).get();
+  }
+
   // Future<List<ClothesInfo>> getCategory(String category) async {
   //   var ll = await (select(clothes)..where((tbl) => tbl.category.equals(category))).get();
   //   return ll.map((cl) => ClothesInfo(cl.name, cl.category, cl.description)).toList();
