@@ -44,7 +44,6 @@ class WeatherCard extends StatelessWidget {
           )]
         ),
           child: Padding(padding: EdgeInsets.fromLTRB(5, 25, 5, 25),
-            child: Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 //crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +82,6 @@ class WeatherCard extends StatelessWidget {
               ),
             ),
           )
-      ),
     );
 
 
