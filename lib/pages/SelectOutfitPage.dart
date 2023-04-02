@@ -7,6 +7,7 @@ import '../CustomColors.dart';
 import '../models/ClothesInfo.dart';
 import 'package:clothes/RoutesGenerator.dart';
 import 'package:clothes/Slider.dart';
+import 'package:clothes/evaluation_icons.dart';
 
 typedef IntCallback = void Function(int);
 
@@ -139,7 +140,7 @@ class SelectOutfitPageState extends State<SelectOutfitPage> {
                         context: context,
                         barrierDismissible: true,
                         builder: (BuildContext context) {
-                          return EvalationWindow();
+                          return EvaluationWindow();
                         },
                       );
                       }
@@ -164,7 +165,7 @@ class SelectOutfitPageState extends State<SelectOutfitPage> {
   }
 }
 
-class EvalationWindow extends StatelessWidget {
+class EvaluationWindow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
@@ -174,70 +175,88 @@ class EvalationWindow extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            Container(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 0.95,
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height * 0.30,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: CustomColors
-                        .light_coffee_tint),
-                    boxShadow: [BoxShadow(
-                      color: CustomColors.light_coffee_tint,
-                      spreadRadius: 1,
-                      blurRadius: 5,
-                      blurStyle: BlurStyle.normal,
-                    )
-                    ]
-                ),
-              padding: EdgeInsets.all(20),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                      'Выберете оценку:',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: CustomColors.dark_brown_tint2,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 32,
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: 300,
+                maxHeight: 300,
+              ),
+              child: Container(
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width * 0.95,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: CustomColors
+                          .light_coffee_tint),
+                      boxShadow: [BoxShadow(
+                        color: CustomColors.light_coffee_tint,
+                        spreadRadius: 1,
+                        blurRadius: 5,
+                        blurStyle: BlurStyle.normal,
                       )
+                      ]
                   ),
-                  SizedBox(height: 45),
-                  EvalationSlider(),
-                  SizedBox(height: 15),
-                  Container(
-                    width: 125,
-                    height: 45,
-                    decoration: BoxDecoration(
-                      color: CustomColors.dark_brown_tint2,
-                      border: Border.all(color : CustomColors.dark_brown_tint2, width: 2.5),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Center(
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context)?.pushNamed(
-                                RoutesGenerator.homePage, arguments: GenerateList());
-                          },
-                          child: Text(
-                            "Оценить",
-                            style: TextStyle(
-                              fontSize: 18,
-                              letterSpacing: 0.0,
-                              color: Colors.white,
+                  padding: EdgeInsets.all(20),
+                  child: Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                              'Выберете оценку:',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: CustomColors.dark_brown_tint2,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 32,
+                              )
+                          ),
+                          SizedBox(height: 45),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                EvaluationIcons.snowflake,
+                                color: CustomColors.dark_brown_tint,
+                              ),
+                              EvalationSlider(),
+                              Icon(
+                                EvaluationIcons.flame,
+                                color: CustomColors.dark_brown_tint,
+                              ),
+                            ],),
+                          Container(
+                            margin: EdgeInsets.only(
+                              top: 15,
+                            ),
+                            width: 125,
+                            height: 45,
+                            decoration: BoxDecoration(
+                              color: CustomColors.dark_brown_tint2,
+                              border: Border.all(color : CustomColors.dark_brown_tint2, width: 2.5),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Center(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context)?.pushNamed(
+                                        RoutesGenerator.homePage, arguments: GenerateList());
+                                  },
+                                  child: Text(
+                                    "Оценить",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      letterSpacing: 0.0,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )
                             ),
                           ),
-                        )
-                    ),
-                  ),
-                ],)
+                        ],)
+                  )
               ),
+            )
           ],
         )
     );
