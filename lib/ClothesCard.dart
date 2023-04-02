@@ -16,7 +16,9 @@ class ClothesCard extends StatelessWidget {
     // TODO: implement build
     return Container(
       child: SizedBox(
-        height: 450,
+        //height: 450,
+        //width: 330,
+        height: 350,
         width: 330,
         child: Container(
             decoration: BoxDecoration(
@@ -44,20 +46,20 @@ class ClothesCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25.0),
                       border: Border.all(color: CustomColors.light_coffee_tint),
                       color: Colors.transparent,
-                      image: DecorationImage(image: NetworkImage(item.imageUrl),
+                      image: DecorationImage(image: NetworkImage('https://gnel.am/images/product/8559/3ff6826f4711e054b45cd3112d2086e8.jpg'),
                           fit: BoxFit.cover),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 0.0),
+                  padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 15.0),
                   child: Text(item.name,
                     style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w500,
                         color: CustomColors.dark_brown_tint),),
                 ),
-                Padding(
+                /*Padding(
                     padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 15.0),
                   child: Expanded(
                     child: Row(
@@ -127,7 +129,7 @@ class ClothesCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                )
+                )*/
               ],
             )
         ),
