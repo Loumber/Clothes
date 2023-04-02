@@ -66,11 +66,11 @@ class SelectOutfitPageState extends State<SelectOutfitPage> {
             var cardsCount = clBloc.filteredData.length;
             return Padding(
               padding: EdgeInsets.fromLTRB(
-                  0, MediaQuery.of(context).size.height / 9, 0, 0),
+                  0, MediaQuery.of(context).size.height / 7, 0, 0),
               child: Column(
                 children: [
                   Container(
-                    height: 450,
+                    height: 350,
                     // width: 400,
                     child: ScrollSnapList(
                       itemBuilder: (BuildContext context, int index) {

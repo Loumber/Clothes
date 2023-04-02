@@ -37,7 +37,7 @@ class EditClothesPage extends StatelessWidget {
       body: Center(
         child: Container(
             child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.73,
+          height: MediaQuery.of(context).size.height * 0.5,
           width: 350,
           child: Container(
             decoration: BoxDecoration(
@@ -57,12 +57,12 @@ class EditClothesPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Padding(
+                /*Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 0),
                   child: ImageCapture(photoWidgetStateKey, path: item.imageUrl),
-                ),
+                ),*/
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0.0, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 15.0, 0, 0),
                   child: SizedBox(
                     height: 50,
                     width: 270,
