@@ -30,7 +30,7 @@ class RoutesGenerator {
         );
       case selectOutfitPage:
         return MaterialPageRoute(
-          builder: (_) => SelectOutfitPage(),
+          builder: (_) => SelectOutfitPageWrapper(),
           settings: RouteSettings(
             arguments: settings.arguments,
           ),

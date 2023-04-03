@@ -37,9 +37,8 @@ class EditClothesPage extends StatelessWidget {
       body: Center(
         child: Container(
             child: SizedBox(
-          //height: MediaQuery.of(context).size.height * 0.73,
-              height: MediaQuery.of(context).size.height * 0.5,
-              width: 350,
+          height: MediaQuery.of(context).size.height * 0.5,
+          width: 350,
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,

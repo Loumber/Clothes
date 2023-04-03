@@ -9,15 +9,14 @@ typedef IntCallback = void Function(int);
 
 class ClothesCard extends StatelessWidget {
   ClothesInfo item;
-  IntCallback callback;
-  ClothesCard(this.item,this.callback);
+  // IntCallback callback;
+  // ClothesCard(this.item,this.callback);
+  ClothesCard(this.item);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
       child: SizedBox(
-        //height: 450,
-        //width: 330,
         height: 350,
         width: 330,
         child: Container(
@@ -77,7 +76,7 @@ class ClothesCard extends StatelessWidget {
                             child: Center(
                               child: GestureDetector(
                                 onTap: () {
-                                  callback(1);
+                                  //callback(1);
                                 },
 
                                 child: Text(
@@ -107,7 +106,7 @@ class ClothesCard extends StatelessWidget {
                             child: Center(
                               child: GestureDetector(
                                 onTap: () {
-                                  callback(2);
+                                  //callback(2);
                                 },
 
                                 child: Text(

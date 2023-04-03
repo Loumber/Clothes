@@ -19,7 +19,6 @@ class AddClothesPage extends StatelessWidget {
     return Center(
         child: Container(
             child: SizedBox(
-              //height: MediaQuery.of(context).size.height * 0.73,
               height: MediaQuery.of(context).size.height * 0.5,
               width: 350,
               child: Container(
@@ -40,7 +39,7 @@ class AddClothesPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
 
-                   /* Padding(
+                    /*Padding(
                         padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 0),
                         child: ImageCapture(photoWidgetStateKey),
                     ),*/

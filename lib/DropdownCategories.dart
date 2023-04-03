@@ -31,7 +31,7 @@ class DropdownCategoriesState extends State<DropdownCategories>{
   Widget build(BuildContext context) {
     // TODO: implement build
     if (category != null) {
-      selectedCategory = category;
+     selectedCategory = category;
     }
      if (type != null) {
        selectedType = type;
