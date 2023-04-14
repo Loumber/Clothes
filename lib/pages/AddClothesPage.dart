@@ -4,6 +4,7 @@ import 'package:clothes/ImageCapture.dart';
 import 'package:clothes/main.dart';
 import 'package:flutter/material.dart';
 import 'package:clothes/CustomColors.dart';
+import 'package:clothes/database/database.dart';
 import '../database/database.dart';
 
 class AddClothesPage extends StatelessWidget {
@@ -58,6 +59,7 @@ class AddClothesPage extends StatelessWidget {
                               color: CustomColors.dark_brown_tint2
                           ),
                           //maxLength: 10,
+
                           decoration: InputDecoration(
                             labelText: 'Название',
 
@@ -74,6 +76,7 @@ class AddClothesPage extends StatelessWidget {
                               borderSide: const BorderSide(width: 2.5, color: CustomColors.dark_brown_tint2),
                             )
                           ),
+                          textInputAction: TextInputAction.next,
                         ),
                       ),
                     ),
@@ -111,6 +114,7 @@ class AddClothesPage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10.0),
                               )
                           ),
+                          textInputAction: TextInputAction.done,
                         ),
                       ),
                     ),
@@ -143,6 +147,8 @@ class AddClothesPage extends StatelessWidget {
                                         myWidgetStateKey.currentState?.selectedCategory as String,
                                         myWidgetStateKey.currentState?.selectedType as String,
                                         descriptionController.value.text,
+                                        db!.ConvertTypeToWarm(myWidgetStateKey.currentState?.selectedType as String),
+
                                       );
 
 

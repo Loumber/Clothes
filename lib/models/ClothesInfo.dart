@@ -4,8 +4,8 @@ class ClothesInfo {
   String type;
   String description;
   String imageUrl;
-
-  ClothesInfo(this.name, this.category,this.description, {this.type = '', this.imageUrl = 'https://gnel.am/images/product/8559/3ff6826f4711e054b45cd3112d2086e8.jpg'});
+  int warmth;
+  ClothesInfo(this.name, this.category,this.description, this.warmth,{this.type = '', this.imageUrl = 'https://gnel.am/images/product/8559/3ff6826f4711e054b45cd3112d2086e8.jpg'});
 
   bool contains(String query) {
     return (name.contains(query)) || (category.contains(query));
@@ -23,6 +23,10 @@ class ClothesInfo {
   String GetDescription() {
     return this.description;
   }
+  int GetWarmth(){
+    return this.warmth;
+  }
+
 
   @override
   String toString() {

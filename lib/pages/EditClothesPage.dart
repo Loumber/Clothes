@@ -166,6 +166,7 @@ class EditClothesPage extends StatelessWidget {
                                   myWidgetStateKey
                                       .currentState?.selectedCategory as String,
                                   descriptionController.value.text,
+                                  db!.ConvertTypeToWarm(myWidgetStateKey.currentState?.selectedType as String),
                                 );
 
                                 titleController.clear();
