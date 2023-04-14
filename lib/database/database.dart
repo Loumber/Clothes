@@ -21,6 +21,10 @@ class AppDb extends _$AppDb {
   AppDb() : super(_openConnection());
   Future<List<Clothe>> get allClotheEntries => select(clothes).get();
 
+  Future<void> DeleteClothes(int id)async{
+   await(delete(clothes)..where((tbl) => tbl.id.equals(id))).go();
+  }
+
   Future<int> addClothesFromStrings(String name, String category, String type, String desc, String warm) {
     return addClothes(ClothesCompanion(name: Value(name),
         category: Value(category),
@@ -48,11 +52,11 @@ class AppDb extends _$AppDb {
     return (select(clothes)..where((tbl) => tbl.type.equals(type))).get();
   }
 
-  final Map<String, int> Warmth = {"Жилеты":0,"Куртки":0,"Плащи":0,"Пальто":0,"Пуховики":0,
-    "Кофты":0,"Рубашки и блузки":0,"Пиджаки":0,"Майки и топы":0,"Худи и свитшоты":0,"Футболки и поло":0,"Джемперы и свитеры":0,
-    "Трико":0,"Джинсы":0,"Брюки":0,"Шорты":0,"Юбки":0,
-    "Шапки":0,"Зонты":0,"Кепки":0,"Очки":0,"Варежки":0,"Перчатки":0,
-    "Кроссовки":0,"Ботинки":0,"Сапоги":0,"Туфли":0,"Сандали":0,"Сланцы":0
+  final Map<String, int> Warmth = {"Жилеты":5,"Куртки":10,"Плащи":10,"Пальто":10,"Пуховики":0,
+    "Кофты":15,"Рубашки и блузки":20,"Пиджаки":20,"Майки и топы":30,"Худи и свитшоты":10,"Футболки и поло":25,"Джемперы и свитеры":15,
+    "Трико":15,"Джинсы":10,"Брюки":15,"Шорты":25,"Юбки":15,
+    "Шапки":0,"Зонты":-100,"Кепки":15,"Очки":-100,"Варежки":-1,"Перчатки":-10,
+    "Кроссовки":10,"Ботинки":0,"Сапоги":0,"Туфли":10,"Сандали":30,"Сланцы":30
   };
 
    Future<List<Clothe>> getCategory(String category) async {
