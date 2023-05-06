@@ -5,8 +5,8 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
+import '../AssetUtil.dart';
 import '../models/ClothesInfo.dart';
-
 part 'database.g.dart';
 
 @DriftDatabase(
@@ -50,9 +50,10 @@ class AppDb extends _$AppDb {
     await update(clothes).replace(updateClothes);
   }
 
-  Future<int> addClothesFromStrings(String name, String category, String type, String desc, String warm, String? imageUrl) {
-    if (imageUrl == null || imageUrl == '') {
-      imageUrl = 'https://gnel.am/images/product/8559/3ff6826f4711e054b45cd3112d2086e8.jpg';
+  Future<int> addClothesFromStrings(String name, String category, String type, String desc, String warm, String? imageUrl) async {
+    if (imageUrl == null || imageUrl.length == 0) {
+
+      imageUrl = await AssetUtil().getImageFileFromAssets('3ff6826f4711e054b45cd3112d2086e8.jpg');
     }
     return addClothes(ClothesCompanion(name: Value(name),
         category: Value(category),
