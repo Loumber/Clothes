@@ -181,6 +181,8 @@ class EditClothesPage extends StatelessWidget {
 
                       Padding(
 
+                        padding:const EdgeInsets.fromLTRB(0, 20, 20, 0),
+
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.75 / 2.2,
                           height: 45,
@@ -206,7 +208,7 @@ class EditClothesPage extends StatelessWidget {
                                             myWidgetStateKey.currentState?.selectedType as String,
                                             descriptionController.value.text,
                                             db!.ConvertTypeToWarm(myWidgetStateKey.currentState?.selectedType as String),
-
+                                            null
                                           );
                                   photoWidgetStateKey.currentState?.SaveImage();
                                   titleController.clear();
@@ -234,7 +236,6 @@ class EditClothesPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        padding:const EdgeInsets.fromLTRB(0, 20, 20, 0),
                       )
                     ],
                   )

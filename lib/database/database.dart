@@ -26,7 +26,7 @@ class AppDb extends _$AppDb {
   }
 
   Future<void> Update(int n)async{
-    var updateClothes = new Clothe(
+    var updateClothes = Clothe(
         id:  int.parse(clothes.id.toString()),
         name: clothes.name.toString(),
         type: clothes.type.toString(),
@@ -37,13 +37,14 @@ class AppDb extends _$AppDb {
     await update(clothes).replace(updateClothes);
   }
   
-  Future<int> addClothesFromStrings(String name, String category, String type, String desc, String warm) {
+  Future<int> addClothesFromStrings(String name, String category, String type, String desc, String warm, String? imageUrl) {
+    imageUrl ??= 'https://gnel.am/images/product/8559/3ff6826f4711e054b45cd3112d2086e8.jpg';
     return addClothes(ClothesCompanion(name: Value(name),
         category: Value(category),
         type: Value(type),
         description: Value(desc),
         warmth: Value(int.parse(warm)),
-        //imageUrl: Value(imageUrl)
+        imageUrl: Value(imageUrl),
     ));
   }
 
@@ -76,7 +77,7 @@ class AppDb extends _$AppDb {
   }
 
   String ConvertTypeToWarm(String type){
-    return Warmth[type] as String;
+    return Warmth[type].toString();
   }
 
 

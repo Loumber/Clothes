@@ -134,6 +134,8 @@ class AddClothesPage extends StatelessWidget {
                           children: [
                             Padding(
 
+                                padding:const EdgeInsets.fromLTRB(0, 20, 40, 0),
+
                                 child: Container(
                                   width: MediaQuery.of(context).size.width * 0.75 / 2.2,
                                   height: 45,
@@ -149,7 +151,7 @@ class AddClothesPage extends StatelessWidget {
                                         if (titleController.value.text.isNotEmpty
                                             && myWidgetStateKey.currentState?.selectedType != null
                                             && myWidgetStateKey.currentState?.selectedCategory != null) {
-                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                             content: Text('Одежда добавлена',style: TextStyle(fontFamily: 'Nexa'),),
                                             backgroundColor: CustomColors.dark_brown_tint,
                                           ));
@@ -159,7 +161,7 @@ class AddClothesPage extends StatelessWidget {
                                             myWidgetStateKey.currentState?.selectedType as String,
                                             descriptionController.value.text,
                                             db!.ConvertTypeToWarm(myWidgetStateKey.currentState?.selectedType as String),
-
+                                            null
                                           );
                                           photoWidgetStateKey.currentState?.SaveImage();
                                           titleController.clear();
@@ -167,7 +169,7 @@ class AddClothesPage extends StatelessWidget {
                                           descriptionController.clear();
                                           myWidgetStateKey.currentState?.clearSelectedOptions();
                                         } else {
-                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                               content: Text('Неправильные данные',style: TextStyle(fontFamily: 'Nexa')),
                                               backgroundColor: CustomColors.dark_brown_tint,
                                           ));
@@ -187,7 +189,6 @@ class AddClothesPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                padding:const EdgeInsets.fromLTRB(0, 20, 40, 0),
                             )
                           ],
                         )
