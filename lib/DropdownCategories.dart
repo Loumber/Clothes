@@ -38,9 +38,11 @@ class DropdownCategoriesState extends State<DropdownCategories>{
      }
     return Container(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              width: 130,
+              width: MediaQuery.of(context).size.width * 0.7 / 2,
+
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -89,10 +91,10 @@ class DropdownCategoriesState extends State<DropdownCategories>{
               ),
             ),
 
-            SizedBox(width: 10,),
+
 
             Container(
-              width: 130,
+              width: MediaQuery.of(context).size.width * 0.7 / 2,
               child: DecoratedBox(
                 decoration: BoxDecoration(
                     color: Colors.white,

@@ -21,7 +21,7 @@ class AddClothesPage extends StatelessWidget {
         child: Container(
             child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.7,
-              width: 350,
+              width: MediaQuery.of(context).size.width * 0.9,
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -36,6 +36,7 @@ class AddClothesPage extends StatelessWidget {
                   )],
                 ),
                 child: Container(
+
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,7 +53,7 @@ class AddClothesPage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                           child: SizedBox(
                             height: 50,
-                            width: 270,
+                            width: MediaQuery.of(context).size.width * 0.75,
                             child: TextField(
                               cursorColor: CustomColors.dark_brown_tint2,
                               controller: titleController,
@@ -85,7 +86,7 @@ class AddClothesPage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                           child: SizedBox(
-                            width: 270,
+                            width: MediaQuery.of(context).size.width * 0.75,
                             child: DropdownCategories(myWidgetStateKey),
                           ),
                         ),
@@ -93,7 +94,8 @@ class AddClothesPage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                           child: SizedBox(
-                            width: 270,
+                            width: MediaQuery.of(context).size.width * 0.75,
+
                             //height: 100,
                             child: Container(
                               child: TextField(
@@ -133,7 +135,7 @@ class AddClothesPage extends StatelessWidget {
                             Padding(
 
                                 child: Container(
-                                  width: 125,
+                                  width: MediaQuery.of(context).size.width * 0.75 / 2.2,
                                   height: 45,
                                   decoration: BoxDecoration(
                                       color: CustomColors.dark_brown_tint2,
