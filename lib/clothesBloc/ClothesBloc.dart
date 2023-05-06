@@ -22,7 +22,7 @@ class ClothesBloc extends Bloc<ClothesEvent, ClothesState> {
   void _onGet (ClothesGetEvent event, Emitter<ClothesState> emit) async {
     emit(ClothesLoadingState());
     _data = await db!.parseClotheToClothesInfo(db!.allClotheEntries);
-    if (event.category != null) {
+    if (event.category != null && event.category != 'Все') {
       _data = _data.where((cl) => cl.category == event.category).toList();
     }
     //print(_data);

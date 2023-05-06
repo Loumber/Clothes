@@ -37,7 +37,7 @@ class WardrobePage extends StatelessWidget {
               TableRow(
                   children: [
                     Tile(RouteArguments('Верхняя одежда'), Clothes.jacket),
-                    Container()
+                    Tile(RouteArguments('Все'), Clothes.jacket),
                   ]
               )
             ],
