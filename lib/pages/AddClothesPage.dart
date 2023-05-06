@@ -147,7 +147,7 @@ class AddClothesPage extends StatelessWidget {
                                   ),
                                   child: Center(
                                     child: GestureDetector(
-                                      onTap: () {
+                                      onTap: () async {
                                         if (titleController.value.text.isNotEmpty
                                             && myWidgetStateKey.currentState?.selectedType != null
                                             && myWidgetStateKey.currentState?.selectedCategory != null) {
@@ -155,6 +155,7 @@ class AddClothesPage extends StatelessWidget {
                                             content: Text('Одежда добавлена',style: TextStyle(fontFamily: 'Nexa'),),
                                             backgroundColor: CustomColors.dark_brown_tint,
                                           ));
+                                          String? path = await photoWidgetStateKey.currentState?.SaveImage('name');
 
                                           db!.addClothesFromStrings(titleController.value.text,
                                             myWidgetStateKey.currentState?.selectedCategory as String,
@@ -163,7 +164,6 @@ class AddClothesPage extends StatelessWidget {
                                             db!.ConvertTypeToWarm(myWidgetStateKey.currentState?.selectedType as String),
                                             null
                                           );
-                                          photoWidgetStateKey.currentState?.SaveImage();
                                           titleController.clear();
                                           photoWidgetStateKey.currentState?.Clear();
                                           descriptionController.clear();

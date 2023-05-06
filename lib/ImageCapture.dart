@@ -30,15 +30,16 @@ class ImageCaptureState extends State<ImageCapture> {
     });
   }
 
-  Future<void> SaveImage() async {
-   final imageFile = this.imageFile;
-   if(imageFile != null) {
-     final String path = await getApplicationDocumentsDirectory().then((value) => value.path);
-     final String fileName = basenameWithoutExtension(imageFile.path);
-     final String fileExtension = extension(imageFile.path);
-     var savedFile = await imageFile!.copy('$path/$fileName$fileExtension');
-   }
-
+  Future<String> SaveImage(String name) async {
+    final imageFile = this.imageFile;
+    if(imageFile != null) {
+      final String path = await getApplicationDocumentsDirectory().then((value) => value.path);
+      final String fileName = name;
+      final String fileExtension = extension(imageFile.path);
+      var savedFile = await imageFile!.copy('$path/$fileName$fileExtension');
+      return savedFile.path;
+    }
+    return "";
   }
   /// Cropper plugin
   Future<void> _cropImage() async {

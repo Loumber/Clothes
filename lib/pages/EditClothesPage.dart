@@ -155,7 +155,6 @@ class EditClothesPage extends StatelessWidget {
                             child: GestureDetector(
                               onTap: () {
 
-                                photoWidgetStateKey.currentState?.SaveImage();
                                 titleController.clear();
                                 photoWidgetStateKey.currentState?.Clear();
                                 descriptionController.clear();
@@ -194,7 +193,7 @@ class EditClothesPage extends StatelessWidget {
                           ),
                           child: Center(
                             child: GestureDetector(
-                              onTap: () {
+                              onTap: () async {
                                 if (titleController.value.text.isNotEmpty
                                     && myWidgetStateKey.currentState?.selectedType != null
                                     && myWidgetStateKey.currentState?.selectedCategory != null) {
@@ -202,6 +201,7 @@ class EditClothesPage extends StatelessWidget {
                                     content: Text('Информация изменена',style: TextStyle(fontFamily: 'Nexa'),),
                                     backgroundColor: CustomColors.dark_brown_tint,
                                   ));
+                                  String? path = await photoWidgetStateKey.currentState?.SaveImage('name');
 
                                     db!.addClothesFromStrings(titleController.value.text,
                                             myWidgetStateKey.currentState?.selectedCategory as String,
@@ -210,7 +210,6 @@ class EditClothesPage extends StatelessWidget {
                                             db!.ConvertTypeToWarm(myWidgetStateKey.currentState?.selectedType as String),
                                             null
                                           );
-                                  photoWidgetStateKey.currentState?.SaveImage();
                                   titleController.clear();
                                   photoWidgetStateKey.currentState?.Clear();
                                   descriptionController.clear();
