@@ -16,14 +16,18 @@ class EditClothesPage extends StatelessWidget {
       DropdownCategoriesState>(); // для получения данных о выбранной категории и типе myWidgetStateKey.currentState?.getSelectedCategory() ?? ''
   GlobalKey<ImageCaptureState> photoWidgetStateKey =
       new GlobalKey<ImageCaptureState>();
+  bool isInit = false;
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     ClothesInfo item =
         ModalRoute.of(context)!.settings.arguments as ClothesInfo;
-    titleController.text = item.GetName();
-    descriptionController.text = item.GetDescription();
+    if(!isInit) {
+      titleController.text = item.GetName();
+      descriptionController.text = item.GetDescription();
+      isInit = true;
+    }
 
 
 
