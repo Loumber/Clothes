@@ -204,8 +204,7 @@ class EvalationWindow extends StatelessWidget {
                           child: GestureDetector(
                         onTap: () {
                           Navigator.of(context)?.pushNamed(
-                              RoutesGenerator.homePage,
-                              arguments: GenerateList());
+                              RoutesGenerator.homePage);
                         },
                         child: Text(
                           "Оценить",

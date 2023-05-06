@@ -154,11 +154,12 @@ class EditClothesPage extends StatelessWidget {
                           child: Center(
                             child: GestureDetector(
                               onTap: () {
-
+                                db!.DeleteClothes(item.id);
                                 titleController.clear();
                                 photoWidgetStateKey.currentState?.Clear();
                                 descriptionController.clear();
                                 myWidgetStateKey.currentState?.clearSelectedOptions();
+                                Navigator.of(context).pop();
 
 
                               },
