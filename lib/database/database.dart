@@ -38,7 +38,9 @@ class AppDb extends _$AppDb {
   }
   
   Future<int> addClothesFromStrings(String name, String category, String type, String desc, String warm, String? imageUrl) {
-    imageUrl ??= 'https://gnel.am/images/product/8559/3ff6826f4711e054b45cd3112d2086e8.jpg';
+    if (imageUrl == null || imageUrl == '') {
+      imageUrl = 'https://gnel.am/images/product/8559/3ff6826f4711e054b45cd3112d2086e8.jpg';
+    }
     return addClothes(ClothesCompanion(name: Value(name),
         category: Value(category),
         type: Value(type),
