@@ -4,6 +4,8 @@ import 'package:clothes/CustomColors.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 
 class ImageCapture extends StatefulWidget {
   String? path;
@@ -20,6 +22,23 @@ class ImageCaptureState extends State<ImageCapture> {
 
   void SetImage(String path) {
     imageFile = File(path);
+  }
+
+  void Clear() {
+    setState(() {
+      imageFile = null;
+    });
+  }
+
+  Future<void> SaveImage() async {
+   final imageFile = this.imageFile;
+   if(imageFile != null) {
+     final String path = await getApplicationDocumentsDirectory().then((value) => value.path);
+     final String fileName = basenameWithoutExtension(imageFile.path);
+     final String fileExtension = extension(imageFile.path);
+     var savedFile = await imageFile!.copy('$path/$fileName$fileExtension');
+   }
+
   }
   /// Cropper plugin
   Future<void> _cropImage() async {
@@ -52,6 +71,7 @@ class ImageCaptureState extends State<ImageCapture> {
 
     setState(() {
       imageFile = selected;
+      print(imageFile?.path);
     });
 
   }
@@ -64,8 +84,8 @@ class ImageCaptureState extends State<ImageCapture> {
   Widget _getWidget() {
     if (imageFile != null) {
       return Container(
-        height: 170,
-        width: 170,
+        height: 130,
+        width: 150,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(22.0),
           image: DecorationImage(image: FileImage(imageFile!),
@@ -96,8 +116,8 @@ class ImageCaptureState extends State<ImageCapture> {
         children: [
           Container(
             child: Container(
-              height: 170,
-              width: 170,
+              height: 130,
+              width: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25.0),
                 border: Border.all(color: CustomColors.dark_brown_tint2,width: 2.5, ),
@@ -131,7 +151,6 @@ class ImageCaptureState extends State<ImageCapture> {
             ],
           ),
           SizedBox(width: 5,),
-
 
         ],
       ),

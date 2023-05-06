@@ -43,7 +43,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      resizeToAvoidBottomInset: false,
+     // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         // shadowColor: null,
         elevation: 0.0,
