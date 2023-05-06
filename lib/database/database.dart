@@ -25,20 +25,20 @@ class AppDb extends _$AppDb {
    await(delete(clothes)..where((tbl) => tbl.id.equals(id))).go();
   }
 
-  Future<void> Update(Clothe cl,String name,String desc,String typ,String cat,String img) async{
+  Future<void> Update(int id,String name,String desc,String typ,String cat,String img,int war) async{
     var updateClothes = Clothe(
-        id: cl.id,
+        id: id,
         name: name,
         description: desc,
         category: cat,
         type: typ,
-        warmth: cl.warmth,
+        warmth: war,
         imageUrl: img
     );
     await update(clothes).replace(updateClothes);
   }
 
-  Future<void> warmthUpdate(Clothe cl,int n)async{
+  Future<void> warmthUpdate(ClothesInfo cl,int n)async{
     var updateClothes = Clothe(
         id:  cl.id,
         name: cl.name,
@@ -49,7 +49,7 @@ class AppDb extends _$AppDb {
         imageUrl: cl.imageUrl);
     await update(clothes).replace(updateClothes);
   }
-  
+
   Future<int> addClothesFromStrings(String name, String category, String type, String desc, String warm, String? imageUrl) {
     if (imageUrl == null || imageUrl == '') {
       imageUrl = 'https://gnel.am/images/product/8559/3ff6826f4711e054b45cd3112d2086e8.jpg';

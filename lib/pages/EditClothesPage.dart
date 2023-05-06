@@ -206,14 +206,13 @@ class EditClothesPage extends StatelessWidget {
                                     backgroundColor: CustomColors.dark_brown_tint,
                                   ));
                                   String? path = await photoWidgetStateKey.currentState?.SaveImage('name');
-
-                                    db!.addClothesFromStrings(titleController.value.text,
-                                            myWidgetStateKey.currentState?.selectedCategory as String,
-                                            myWidgetStateKey.currentState?.selectedType as String,
-                                            descriptionController.value.text,
-                                            db!.ConvertTypeToWarm(myWidgetStateKey.currentState?.selectedType as String),
-                                            path
-                                          );
+                                  db!.Update(item.id, titleController.value.text,
+                                      descriptionController.value.text,
+                                      myWidgetStateKey.currentState?.selectedType as String,
+                                      myWidgetStateKey.currentState?.selectedCategory as String,
+                                      path as String,
+                                      int.parse( db!.ConvertTypeToWarm(myWidgetStateKey.currentState?.selectedType as String))
+                                  );
                                   titleController.clear();
                                   photoWidgetStateKey.currentState?.Clear();
                                   descriptionController.clear();
