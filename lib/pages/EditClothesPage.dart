@@ -208,7 +208,7 @@ class EditClothesPage extends StatelessWidget {
                                     content: Text('Информация изменена',style: TextStyle(fontFamily: 'Nexa'),),
                                     backgroundColor: CustomColors.dark_brown_tint,
                                   ));
-                                  String? path = await photoWidgetStateKey.currentState?.SaveImage('name');
+                                  String? path = await photoWidgetStateKey.currentState?.SaveImage("img#${item.id}");
                                   await db!.Update(item.id, titleController.value.text,
                                       descriptionController.value.text,
                                       myWidgetStateKey.currentState?.selectedType as String,
