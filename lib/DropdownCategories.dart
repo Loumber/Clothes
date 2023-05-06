@@ -7,15 +7,16 @@ import 'package:flutter/material.dart';
 class DropdownCategories extends StatefulWidget {
   String? category;
   String? type;
+  bool isInit = false;
   DropdownCategories(Key key, {this.category, this.type}) : super(key: key);
   @override
-  State<StatefulWidget> createState() => DropdownCategoriesState(category: category, type: type);
+  State<StatefulWidget> createState() => DropdownCategoriesState(initCategory: category, type: type);
   }
 
 class DropdownCategoriesState extends State<DropdownCategories>{
-  String? category;
+  String? initCategory;
   String? type;
-  DropdownCategoriesState({this.category, this.type});
+  DropdownCategoriesState({this.initCategory, this.type});
   List<String> categories = ["Верхняя одежда","Верх","Низ","Аксессуары","Обувь"];
   List<String> outerwearType = ["Жилеты","Куртки","Плащи","Пальто","Пуховики"];
   List<String> topType = ["Кофты","Рубашки и блузки","Пиджаки","Майки и топы","Худи и свитшоты","Футболки и поло","Джемперы и свитеры"];
@@ -30,12 +31,15 @@ class DropdownCategoriesState extends State<DropdownCategories>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    if (category != null) {
-     selectedCategory = category;
-    }
+
+    if (!widget.isInit && initCategory != null) {
+     selectedCategory = initCategory;
+     widget.isInit = true;
      if (type != null) {
        selectedType = type;
      }
+    }
+
     return Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,7 +60,7 @@ class DropdownCategoriesState extends State<DropdownCategories>{
                       iconEnabledColor: CustomColors.dark_brown_tint,
                       dropdownColor: Colors.white,
                       focusColor: CustomColors.dark_brown_tint2,
-                      hint: Text('Категория', style: TextStyle(fontFamily: 'Nexa',fontSize: 14, color: CustomColors.dark_brown_tint2),),
+                      hint: Text('Категория', style: TextStyle(fontSize: 14, color: CustomColors.dark_brown_tint2),),
                       value: selectedCategory,
                       isExpanded: true,
                       style: TextStyle(fontSize: 16, color: CustomColors.dark_brown_tint2),
@@ -82,6 +86,7 @@ class DropdownCategoriesState extends State<DropdownCategories>{
                         }
                         setState(() {
                           selectedType = null;
+                          type = null;
                           selectedCategory = category;
                         });
                       },
@@ -108,9 +113,9 @@ class DropdownCategoriesState extends State<DropdownCategories>{
                       iconEnabledColor: CustomColors.dark_brown_tint,
                       iconDisabledColor: CustomColors.dark_brown_tint2,
                       dropdownColor: Colors.white,
-                      style: TextStyle(fontSize: 16, fontFamily: 'Nexa', color: CustomColors.dark_brown_tint2),
+                      style: TextStyle(fontSize: 16, color: CustomColors.dark_brown_tint2),
                       focusColor: CustomColors.dark_coffee_clr,
-                      hint: Text('Тип', style: TextStyle(fontSize: 14, fontFamily: 'Montserrat', color: CustomColors.dark_brown_tint2),),
+                      hint: Text('Тип', style: TextStyle(fontSize: 14, color: CustomColors.dark_brown_tint2),),
                       value: selectedType,
                       isExpanded: true,
                       items: types.map((String value) {

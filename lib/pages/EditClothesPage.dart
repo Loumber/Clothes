@@ -23,13 +23,12 @@ class EditClothesPage extends StatelessWidget {
     // TODO: implement build
     ClothesInfo item =
         ModalRoute.of(context)!.settings.arguments as ClothesInfo;
+
     if(!isInit) {
       titleController.text = item.GetName();
       descriptionController.text = item.GetDescription();
       isInit = true;
     }
-
-
 
     return Scaffold(
       appBar: AppBar(
