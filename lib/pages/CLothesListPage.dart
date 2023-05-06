@@ -9,14 +9,21 @@ import '../CustomColors.dart';
 import '../models/ClothesInfo.dart';
 import '../database/database.dart';
 
-class ClothesListPage extends StatelessWidget {
+class ClothesListPage extends StatefulWidget {
   //const ClothesListPage({super.key, required this.title});
   const ClothesListPage({super.key});
+
+  @override
+  State<ClothesListPage> createState() => _ClothesListPageState();
+}
+
+class _ClothesListPageState extends State<ClothesListPage> {
   //final String title;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     final RouteArguments arguments = ModalRoute.of(context)!.settings.arguments as RouteArguments;
+    BlocProvider.of<ClothesBloc>(context).add(ClothesGetEvent(category: arguments.title));
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
@@ -30,14 +37,11 @@ class ClothesListPage extends StatelessWidget {
             color: CustomColors.dark_brown_tint),),
       ),
       backgroundColor: Colors.white,
-       body: BlocProvider(
-         create: (context) => ClothesBloc()..add(ClothesGetEvent(category: arguments.title)),
-         child: BlocBuilder<ClothesBloc, ClothesState> (
-             builder: (context, state) {
-               return ClothesList();
-             }
-           ),
-       ),
+       body: BlocBuilder<ClothesBloc, ClothesState> (
+           builder: (context, state) {
+             return ClothesList();
+           }
+         ),
 
        //Center(
       //   child: Container(
@@ -46,7 +50,6 @@ class ClothesListPage extends StatelessWidget {
       // ),
     );
   }
-
 }
 
 class ClothesList extends StatefulWidget {

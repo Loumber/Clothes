@@ -18,12 +18,8 @@ class SelectOutfitPageWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = ModalRoute.of(context)!.settings.arguments as int;
-    return BlocProvider<ClothesBloc>(
-      create: (context) => ClothesBloc()
-        ..add(ClothesSelectionEvent(
-            t)),
-      child: SelectOutfitPage(),
-    );
+    BlocProvider.of<ClothesBloc>(context).add(ClothesSelectionEvent(t));
+    return SelectOutfitPage();
   }
 }
 

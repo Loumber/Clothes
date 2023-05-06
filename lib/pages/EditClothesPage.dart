@@ -1,10 +1,12 @@
 import 'package:clothes/ImageCapture.dart';
+import 'package:clothes/clothesBloc/ClothesBloc.dart';
 import 'package:clothes/models/ClothesInfo.dart';
 import 'package:clothes/DropdownCategories.dart';
 import 'package:clothes/main.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:clothes/CustomColors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../database/database.dart';
 
 class EditClothesPage extends StatelessWidget {
@@ -153,8 +155,9 @@ class EditClothesPage extends StatelessWidget {
                           ),
                           child: Center(
                             child: GestureDetector(
-                              onTap: () {
-                                db!.DeleteClothes(item.id);
+                              onTap: () async {
+                                await db!.DeleteClothes(item.id);
+                                BlocProvider.of<ClothesBloc>(context).add(ClothesGetEvent(category:item.category));
                                 titleController.clear();
                                 photoWidgetStateKey.currentState?.Clear();
                                 descriptionController.clear();
