@@ -206,17 +206,16 @@ class EditClothesPage extends StatelessWidget {
                                     backgroundColor: CustomColors.dark_brown_tint,
                                   ));
                                   String? path = await photoWidgetStateKey.currentState?.SaveImage('name');
-                                  db!.Update(item.id, titleController.value.text,
+                                  await db!.Update(item.id, titleController.value.text,
                                       descriptionController.value.text,
                                       myWidgetStateKey.currentState?.selectedType as String,
                                       myWidgetStateKey.currentState?.selectedCategory as String,
                                       path as String,
                                       int.parse( db!.ConvertTypeToWarm(myWidgetStateKey.currentState?.selectedType as String))
                                   );
-                                  titleController.clear();
-                                  photoWidgetStateKey.currentState?.Clear();
-                                  descriptionController.clear();
-                                  myWidgetStateKey.currentState?.clearSelectedOptions();
+                                  BlocProvider.of<ClothesBloc>(context).add(ClothesGetEvent(category:item.category));
+                                  Navigator.of(context).pop();
+
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                     content: Text('Неправильные данные',style: TextStyle(fontFamily: 'Nexa')),
