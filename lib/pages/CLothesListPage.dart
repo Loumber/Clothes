@@ -4,7 +4,7 @@ import 'package:clothes/models/RouteArguments.dart';
 import 'package:clothes/RoutesGenerator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'dart:io';
 import '../CustomColors.dart';
 import '../models/ClothesInfo.dart';
 import '../database/database.dart';
@@ -168,7 +168,7 @@ class ListCard extends StatelessWidget {
                     width: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(22.0),
-                      image: DecorationImage(image: NetworkImage(item.imageUrl),
+                      image: DecorationImage(image: FileImage(File(item.imageUrl)),
                           fit: BoxFit.cover
                       ),
                     ),
