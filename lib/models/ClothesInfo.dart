@@ -5,7 +5,7 @@ class ClothesInfo {
   String description;
   String imageUrl;
   int warmth;
-  ClothesInfo(this.name, this.category,this.description, this.warmth,{this.type = '', this.imageUrl = 'https://gnel.am/images/product/8559/3ff6826f4711e054b45cd3112d2086e8.jpg'});
+  ClothesInfo(this.name, this.category,this.description, this.warmth,{this.type = '', required this.imageUrl});
 
   bool contains(String query) {
     return (name.contains(query)) || (category.contains(query));

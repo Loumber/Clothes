@@ -208,7 +208,7 @@ class EditClothesPage extends StatelessWidget {
                                             myWidgetStateKey.currentState?.selectedType as String,
                                             descriptionController.value.text,
                                             db!.ConvertTypeToWarm(myWidgetStateKey.currentState?.selectedType as String),
-                                            null
+                                            path
                                           );
                                   titleController.clear();
                                   photoWidgetStateKey.currentState?.Clear();
