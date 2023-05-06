@@ -49,6 +49,9 @@ class ClothesBloc extends Bloc<ClothesEvent, ClothesState> {
     for(var category in categories){
       int WarmthDifferences = 100;
       var Clothes = await db!.parseClotheToClothesInfo(db!.getCategory(category));
+      if (Clothes.isEmpty) {
+        continue;
+      }
       ClothesInfo ClothesTypeMin = Clothes[0];
       for(var Clothe in Clothes){
         if((event.t-Clothe.warmth).abs()<WarmthDifferences){

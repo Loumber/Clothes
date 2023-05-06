@@ -73,7 +73,7 @@ class AppDb extends _$AppDb {
   };
 
    Future<List<Clothe>> getCategory(String category) async {
-     return (select(clothes)..where((tbl) => tbl.type.equals(category))).get();
+     return (select(clothes)..where((tbl) => tbl.category.equals(category))).get();
   }
 
   String ConvertTypeToWarm(String type){
