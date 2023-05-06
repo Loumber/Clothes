@@ -25,15 +25,28 @@ class AppDb extends _$AppDb {
    await(delete(clothes)..where((tbl) => tbl.id.equals(id))).go();
   }
 
-  Future<void> Update(int n)async{
+  Future<void> Update(Clothe cl,String name,String desc,String typ,String cat,String img) async{
     var updateClothes = Clothe(
-        id:  int.parse(clothes.id.toString()),
-        name: clothes.name.toString(),
-        type: clothes.type.toString(),
-        warmth: int.parse(clothes.warmth.toString())-n,
-        category: clothes.category.toString(),
-        description: clothes.description.toString(),
-        imageUrl: clothes.imageUrl.toString());
+        id: cl.id,
+        name: name,
+        description: desc,
+        category: cat,
+        type: typ,
+        warmth: cl.warmth,
+        imageUrl: img
+    );
+    await update(clothes).replace(updateClothes);
+  }
+
+  Future<void> warmthUpdate(Clothe cl,int n)async{
+    var updateClothes = Clothe(
+        id:  cl.id,
+        name: cl.name,
+        type: cl.type,
+        warmth: cl.warmth-n,
+        category: cl.category,
+        description: cl.description,
+        imageUrl: cl.imageUrl);
     await update(clothes).replace(updateClothes);
   }
   
