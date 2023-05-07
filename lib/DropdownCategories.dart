@@ -61,10 +61,10 @@ class DropdownCategoriesState extends State<DropdownCategories>{
                       iconEnabledColor: CustomColors.dark_brown_tint,
                       dropdownColor: Colors.white,
                       focusColor: CustomColors.dark_brown_tint2,
-                      hint: Text('Категория', style: TextStyle(fontSize: 15,fontFamily: "Nexa", color: CustomColors.dark_brown_tint2),),
+                      hint: Text('Категория', style: TextStyle(fontSize: 15,height: 1.1,fontFamily: "Nexa", color: CustomColors.dark_brown_tint2),),
                       value: selectedCategory,
                       isExpanded: true,
-                      style: TextStyle(fontSize: 15, color: CustomColors.dark_brown_tint2),
+                      style: TextStyle(fontSize: 15,height: 1.1, fontFamily: "Nexa",color: CustomColors.dark_brown_tint2),
                       items: categories.map((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
@@ -115,9 +115,9 @@ class DropdownCategoriesState extends State<DropdownCategories>{
                       iconEnabledColor: CustomColors.dark_brown_tint,
                       iconDisabledColor: CustomColors.dark_brown_tint2,
                       dropdownColor: Colors.white,
-                      style: TextStyle(fontSize: 15, color: CustomColors.dark_brown_tint2),
+                      style: TextStyle(fontSize: 15, height: 1.1,fontFamily: "Nexa",color: CustomColors.dark_brown_tint2),
                       focusColor: CustomColors.dark_coffee_clr,
-                      hint: Text('Тип', style: TextStyle(fontSize: 15, color: CustomColors.dark_brown_tint2),),
+                      hint: Text('Тип', style: TextStyle(fontSize: 15,height: 1.1,fontFamily: "Nexa", color: CustomColors.dark_brown_tint2),),
                       value: selectedType,
                       isExpanded: true,
                       items: types.map((String value) {
