@@ -229,8 +229,8 @@ class EvaluationWindow extends StatelessWidget {
                           child: Center(
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.of(context)?.pushNamed(
-                                    RoutesGenerator.homePage);
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    RoutesGenerator.homePage, (Route<dynamic> route)=>false);
                               },
                               child: Text(
                                 "Оценить",
