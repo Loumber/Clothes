@@ -50,6 +50,12 @@ class AppDb extends _$AppDb {
     await update(clothes).replace(updateClothes);
   }
 
+
+  void estimation(List<ClothesInfo> cl, int n){
+    for(var c in cl){
+      warmthUpdate(c, n);
+    }
+  }
   Future<int> addClothesFromStrings(String name, String category, String type, String desc, String warm, String? imageUrl) async {
     if (imageUrl == null || imageUrl.length == 0) {
 
@@ -81,11 +87,11 @@ class AppDb extends _$AppDb {
     return (select(clothes)..where((tbl) => tbl.type.equals(type))).get();
   }
 
-  final Map<String, int> Warmth = {"Жилеты":5,"Куртки":10,"Плащи":10,"Пальто":10,"Пуховики":0,
-    "Кофты":15,"Рубашки и блузки":20,"Пиджаки":20,"Майки и топы":30,"Худи и свитшоты":10,"Футболки и поло":25,"Джемперы и свитеры":15,
+  final Map<String, int> Warmth = {"Жилеты":5,"Куртки":13,"Плащи":10,"Пальто":10,"Пуховики":0,
+    "Кофты":15,"Рубашки и блузки":20,"Пиджаки":20,"Майки и топы":25,"Худи и свитшоты":10,"Футболки и поло":25,"Джемперы и свитеры":15,
     "Трико":15,"Джинсы":10,"Брюки":15,"Шорты":25,"Юбки":15,
     "Шапки":0,"Зонты":-100,"Кепки":15,"Очки":-100,"Варежки":-1,"Перчатки":-10,
-    "Кроссовки":10,"Ботинки":0,"Сапоги":0,"Туфли":10,"Сандали":30,"Сланцы":30
+    "Кроссовки":15,"Ботинки":0,"Сапоги":0,"Туфли":15,"Сандали":30,"Сланцы":30
   };
 
    Future<List<Clothe>> getCategory(String category) async {

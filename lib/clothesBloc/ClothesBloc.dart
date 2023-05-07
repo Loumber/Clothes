@@ -47,7 +47,7 @@ class ClothesBloc extends Bloc<ClothesEvent, ClothesState> {
     var Dropdown = DropdownCategoriesState();
     var categories = Dropdown.categories;
     for(var category in categories){
-      int WarmthDifferences = 100;
+      int WarmthDifferences = 10;
       var Clothes = await db!.parseClotheToClothesInfo(db!.getCategory(category));
       if (Clothes.isEmpty) {
         continue;
