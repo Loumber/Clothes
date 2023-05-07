@@ -52,8 +52,10 @@ class AppDb extends _$AppDb {
 
 
   void estimation(List<ClothesInfo> cl, int n){
-    for(var c in cl){
-      warmthUpdate(c, n);
+    if(cl.isNotEmpty){
+      for(var c in cl){
+        warmthUpdate(c, n);
+      }
     }
   }
   Future<int> addClothesFromStrings(String name, String category, String type, String desc, String warm, String? imageUrl) async {
