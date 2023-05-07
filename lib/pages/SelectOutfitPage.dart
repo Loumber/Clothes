@@ -1,4 +1,5 @@
 import 'package:clothes/clothesBloc/ClothesBloc.dart';
+import 'package:clothes/database/database.dart';
 import 'package:clothes/models/RouteArguments.dart';
 import 'package:clothes/pages/MainPage.dart';
 import 'package:flutter/material.dart';
@@ -229,6 +230,7 @@ class EvaluationWindow extends StatelessWidget {
                           child: Center(
                             child: GestureDetector(
                               onTap: () {
+                                SendEvaluationToDb();
                                 Navigator.of(context).pushNamedAndRemoveUntil(
                                     RoutesGenerator.homePage, (Route<dynamic> route)=>false);
                               },
@@ -251,4 +253,25 @@ class EvaluationWindow extends StatelessWidget {
           ],
         ));
   }
+}
+
+void SendEvaluationToDb()
+{
+  int eval = 0;
+  switch(EvalationSliderState().step)
+  {
+    case 0:
+      eval = -6;
+      return;
+    case 25:
+      eval = -3;
+      return;
+    case 75:
+      eval = 3;
+      return;
+    case 100:
+      eval = 6;
+      return;
+  }
+  AppDb().estimation(ClothesBloc().filteredData, eval);
 }
