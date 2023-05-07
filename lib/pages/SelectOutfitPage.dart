@@ -37,24 +37,50 @@ class SelectOutfitPageState extends State<SelectOutfitPage> {
     }
 
     return (await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Вы уверены?'),
-        content: Text('Хотите отменить прогулку?'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false), //<-- SEE HERE
-            child: Text('Нет'),
+          context: context,
+          builder: (context) => AlertDialog(
+            content: Text(
+              'Хотите отменить прогулку?',
+              style: TextStyle(
+                fontWeight: FontWeight.w300,
+                fontSize: 21,
+                letterSpacing: 0.0,
+                color: CustomColors.dark_brown_tint,
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                //<-- SEE HERE
+                child: const Text(
+                  'Нет',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontSize: 21,
+                    letterSpacing: 0.0,
+                    color: CustomColors.dark_brown_tint,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                // <-- SEE HERE
+                child: Text(
+                  'Да',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontSize: 21,
+                    letterSpacing: 0.0,
+                    color: CustomColors.dark_brown_tint,
+                  ),
+                ),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(true), // <-- SEE HERE
-            child: Text('Да'),
-          ),
-        ],
-      ),
-    )) ??
+        )) ??
         false;
   }
+
   //WalkButton
   String walkButtonText = 'Начать прогулку';
   int walkButtonTapCounter = 0;
@@ -83,7 +109,7 @@ class SelectOutfitPageState extends State<SelectOutfitPage> {
         backgroundColor: Colors.white,
         body: BlocBuilder<ClothesBloc, ClothesState>(
           builder: (context, state) {
-            var clBloc =  BlocProvider.of<ClothesBloc>(context);
+            var clBloc = BlocProvider.of<ClothesBloc>(context);
             //var clBloc = context.watch<ClothesBloc>();
 
             if (state is ClothesLoadedState) {
@@ -98,7 +124,8 @@ class SelectOutfitPageState extends State<SelectOutfitPage> {
                       // width: 400,
                       child: Theme(
                         data: Theme.of(context).copyWith(
-                            colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.dark_coffee_clr)),
+                            colorScheme: ColorScheme.fromSwatch().copyWith(
+                                secondary: CustomColors.dark_coffee_clr)),
                         child: ScrollSnapList(
                           itemBuilder: (BuildContext context, int index) {
                             return ClothesCard(
@@ -198,36 +225,30 @@ class EvaluationWindow extends StatelessWidget {
                   maxHeight: 300,
                 ),
                 child: Container(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.95,
+                  width: MediaQuery.of(context).size.width * 0.95,
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      border: Border.all(color: CustomColors
-                          .light_coffee_tint),
-                      boxShadow: [BoxShadow(
-                        color: CustomColors.light_coffee_tint,
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                        blurStyle: BlurStyle.normal,
-                      )
-                      ]
-                  ),
+                      border: Border.all(color: CustomColors.light_coffee_tint),
+                      boxShadow: [
+                        BoxShadow(
+                          color: CustomColors.light_coffee_tint,
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          blurStyle: BlurStyle.normal,
+                        )
+                      ]),
                   padding: EdgeInsets.all(20),
                   child: Center(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                            'Выберете оценку:',
+                        Text('Выберете оценку:',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: CustomColors.dark_brown_tint2,
                               fontWeight: FontWeight.w700,
                               fontSize: 32,
-                            )
-                        ),
+                            )),
                         SizedBox(height: 45),
                         Row(
                           mainAxisSize: MainAxisSize.min,
@@ -251,7 +272,9 @@ class EvaluationWindow extends StatelessWidget {
                           height: 45,
                           decoration: BoxDecoration(
                             color: CustomColors.dark_brown_tint2,
-                            border: Border.all(color : CustomColors.dark_brown_tint2, width: 2.5),
+                            border: Border.all(
+                                color: CustomColors.dark_brown_tint2,
+                                width: 2.5),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Center(
@@ -259,7 +282,8 @@ class EvaluationWindow extends StatelessWidget {
                               onTap: () {
                                 SendEvaluationToDb();
                                 Navigator.of(context).pushNamedAndRemoveUntil(
-                                    RoutesGenerator.homePage, (Route<dynamic> route)=>false);
+                                    RoutesGenerator.homePage,
+                                    (Route<dynamic> route) => false);
                               },
                               child: Text(
                                 "Оценить",
@@ -275,18 +299,15 @@ class EvaluationWindow extends StatelessWidget {
                       ],
                     ),
                   ),
-                )
-            )
+                ))
           ],
         ));
   }
 }
 
-void SendEvaluationToDb()
-{
+void SendEvaluationToDb() {
   int eval = 0;
-  switch(EvalationSliderState().step)
-  {
+  switch (EvalationSliderState().step) {
     case 0:
       eval = -6;
       return;
