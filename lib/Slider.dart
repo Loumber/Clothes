@@ -43,8 +43,8 @@ class EvalationSliderState extends State<EvalationSlider> {
                 min: 0,
                 max: 100,
                 divisions: 4,
-                activeColor: Colors.brown[800],
-                inactiveColor: Colors.brown[300],
+                activeColor: CustomColors.light_coffee_tint,
+                inactiveColor:  CustomColors.light_coffee_tint,
                 thumbColor: Colors.brown,
                 label: _status,
                 onChanged: (double value) {
