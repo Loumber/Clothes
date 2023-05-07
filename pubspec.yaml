@@ -85,7 +85,9 @@ flutter:
     - family: EvaluationIcons
       fonts:
         - asset: fonts/EvaluationIcons.ttf
-
+    - family: Icon_all
+      fonts:
+        - asset: fonts/Icon_all.ttf
   uses-material-design: true
   assets:
     - assets/

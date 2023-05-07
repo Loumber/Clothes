@@ -6,6 +6,7 @@ import 'package:clothes/clothes_icons.dart';
 
 import '../CustomColors.dart';
 import '../RoutesGenerator.dart';
+import '../icon_all_icons.dart';
 
 
 class WardrobePage extends StatelessWidget {
@@ -37,7 +38,7 @@ class WardrobePage extends StatelessWidget {
               TableRow(
                   children: [
                     Tile(RouteArguments('Верхняя одежда'), Clothes.jacket),
-                    Tile(RouteArguments('Всё'), Clothes.jacket),
+                    Tile(RouteArguments('Всё'), Icon_all.all_icon),
                   ]
               )
             ],
