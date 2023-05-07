@@ -31,6 +31,30 @@ class SelectOutfitPage extends StatefulWidget {
 }
 
 class SelectOutfitPageState extends State<SelectOutfitPage> {
+  Future<bool> _onWillPop() async {
+    if (walkButtonText == 'Начать прогулку') {
+      return true;
+    }
+
+    return (await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Вы уверены?'),
+        content: Text('Хотите отменить прогулку?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false), //<-- SEE HERE
+            child: Text('Нет'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true), // <-- SEE HERE
+            child: Text('Да'),
+          ),
+        ],
+      ),
+    )) ??
+        false;
+  }
   //WalkButton
   String walkButtonText = 'Начать прогулку';
   int walkButtonTapCounter = 0;
@@ -40,117 +64,120 @@ class SelectOutfitPageState extends State<SelectOutfitPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        leading: BackButton(color: CustomColors.dark_coffee_clr),
-        shadowColor: null,
-        backgroundColor: CustomColors.light_coffee_clr,
-        title: const Text(
-          'Clothes',
-          style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
-              color: CustomColors.dark_brown_tint),
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0.0,
+          leading: BackButton(color: CustomColors.dark_coffee_clr),
+          shadowColor: null,
+          backgroundColor: CustomColors.light_coffee_clr,
+          title: const Text(
+            'Clothes',
+            style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                color: CustomColors.dark_brown_tint),
+          ),
         ),
-      ),
-      backgroundColor: Colors.white,
-      body: BlocBuilder<ClothesBloc, ClothesState>(
-        builder: (context, state) {
-          var clBloc =  BlocProvider.of<ClothesBloc>(context);
-          //var clBloc = context.watch<ClothesBloc>();
+        backgroundColor: Colors.white,
+        body: BlocBuilder<ClothesBloc, ClothesState>(
+          builder: (context, state) {
+            var clBloc =  BlocProvider.of<ClothesBloc>(context);
+            //var clBloc = context.watch<ClothesBloc>();
 
-          if (state is ClothesLoadedState) {
-            var cardsCount = clBloc.filteredData.length;
-            return Padding(
-              padding: EdgeInsets.fromLTRB(
-                  0, MediaQuery.of(context).size.height / 7, 0, 0),
-              child: Column(
-                children: [
-                  Container(
-                    height: 350,
-                    // width: 400,
-                    child: Theme(
-                      data: Theme.of(context).copyWith(
-                          colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.dark_coffee_clr)),
-                      child: ScrollSnapList(
-                        itemBuilder: (BuildContext context, int index) {
-                          return ClothesCard(
-                            clBloc.filteredData.elementAt(index % cardsCount),
-                          );
-                        },
-                        itemSize: 330,
-                        dynamicItemSize: true,
-                        itemCount: cardsCount,
-                        onItemFocus: (int index) => {
-                          //   setState(() {
-                          //     _focusedItem = index;
-                          // })
-                        },
+            if (state is ClothesLoadedState) {
+              var cardsCount = clBloc.filteredData.length;
+              return Padding(
+                padding: EdgeInsets.fromLTRB(
+                    0, MediaQuery.of(context).size.height / 7, 0, 0),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 350,
+                      // width: 400,
+                      child: Theme(
+                        data: Theme.of(context).copyWith(
+                            colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.dark_coffee_clr)),
+                        child: ScrollSnapList(
+                          itemBuilder: (BuildContext context, int index) {
+                            return ClothesCard(
+                              clBloc.filteredData.elementAt(index % cardsCount),
+                            );
+                          },
+                          itemSize: 330,
+                          dynamicItemSize: true,
+                          itemCount: cardsCount,
+                          onItemFocus: (int index) => {
+                            //   setState(() {
+                            //     _focusedItem = index;
+                            // })
+                          },
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.75,
-                    height: 70,
-                    decoration: BoxDecoration(
-                        color: walkButtonBackColor,
-                        border:
-                            Border.all(color: CustomColors.light_coffee_tint),
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: CustomColors.light_coffee_tint,
-                            spreadRadius: 1,
-                            blurRadius: 10,
-                            blurStyle: BlurStyle.normal,
-                          )
-                        ]),
-                    child: Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          if (walkButtonTapCounter == 0) {
-                            setState(() {
-                              walkButtonTapCounter++;
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.75,
+                      height: 70,
+                      decoration: BoxDecoration(
+                          color: walkButtonBackColor,
+                          border:
+                              Border.all(color: CustomColors.light_coffee_tint),
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: CustomColors.light_coffee_tint,
+                              spreadRadius: 1,
+                              blurRadius: 10,
+                              blurStyle: BlurStyle.normal,
+                            )
+                          ]),
+                      child: Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            if (walkButtonTapCounter == 0) {
+                              setState(() {
+                                walkButtonTapCounter++;
 
-                              walkButtonText = 'Закончить прогулку';
-                              walkButtonTextColor = Colors.white;
-                              walkButtonBackColor =
-                                  CustomColors.dark_brown_tint2;
-                            });
-                          } else {
-                            showDialog<void>(
-                              context: context,
-                              barrierDismissible: true,
-                              builder: (BuildContext context) {
-                                return EvaluationWindow();
-                              },
-                            );
-                          }
-                        },
-                        child: Text(
-                          walkButtonText,
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 21,
-                            letterSpacing: 0.0,
-                            color: walkButtonTextColor,
+                                walkButtonText = 'Закончить прогулку';
+                                walkButtonTextColor = Colors.white;
+                                walkButtonBackColor =
+                                    CustomColors.dark_brown_tint2;
+                              });
+                            } else {
+                              showDialog<void>(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (BuildContext context) {
+                                  return EvaluationWindow();
+                                },
+                              );
+                            }
+                          },
+                          child: Text(
+                            walkButtonText,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 21,
+                              letterSpacing: 0.0,
+                              color: walkButtonTextColor,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
+                  ],
+                ),
+              );
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
       ),
     );
   }
