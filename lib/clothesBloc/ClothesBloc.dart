@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:clothes/main.dart';
@@ -43,23 +44,29 @@ class ClothesBloc extends Bloc<ClothesEvent, ClothesState> {
     emit(ClothesLoadingState());
     /// event.t - температура
     _data.clear();
+    final _random = new Random();
+
     /// TO DO algorithm
     var Dropdown = DropdownCategoriesState();
     var categories = Dropdown.categories;
     for(var category in categories){
-      int WarmthDifferences = 10;
-      var Clothes = await db!.parseClotheToClothesInfo(db!.getCategory(category));
-      if (Clothes.isEmpty) {
+      var warmthDifferences = 10000;
+      var clothes = await db!.parseClotheToClothesInfo(db!.getCategory(category));
+      if (clothes.isEmpty) {
         continue;
       }
-      ClothesInfo ClothesTypeMin = Clothes[0];
-      for(var Clothe in Clothes){
-        if((event.t-Clothe.warmth).abs()<WarmthDifferences){
-          WarmthDifferences = Clothe.warmth;
-          ClothesTypeMin = Clothe;
+
+      List<ClothesInfo> ClothesTypeMin = [];
+      for(var clothe in clothes){
+        final diff = (event.t - clothe.warmth).abs();
+        if(diff < warmthDifferences) {
+          warmthDifferences = diff;
+          ClothesTypeMin = [clothe];
+        } else if (diff == warmthDifferences) {
+          ClothesTypeMin.add(clothe);
         }
       }
-     _data.add(ClothesTypeMin);
+     _data.add(ClothesTypeMin[_random.nextInt(ClothesTypeMin.length)]);
     }
     filteredData = _data;
     emit(ClothesLoadedState());
