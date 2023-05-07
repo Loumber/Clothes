@@ -121,7 +121,7 @@ class ImageCaptureState extends State<ImageCapture> {
               width: MediaQuery.of(context).size.width * 0.5,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25.0),
-                border: Border.all(color: CustomColors.dark_brown_tint2,width: 2.5, ),
+                border: Border.all(color: CustomColors.dark_brown_tint2,width: 1 ),
               ),
               child: _getWidget(),
 

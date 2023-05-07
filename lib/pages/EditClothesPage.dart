@@ -64,71 +64,32 @@ class EditClothesPage extends StatelessWidget {
                 )
               ],
             ),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 35.0, 0, 0),
-                    child: ImageCapture(photoWidgetStateKey, path: item.imageUrl),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 30.0, 0, 0),
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.07,
-                      width: MediaQuery.of(context).size.width * 0.85,
-                      child: TextField(
-                        cursorColor: CustomColors.dark_brown_tint2,
-                        controller: titleController,
-                        style: TextStyle(
-                            fontSize: 16, color: CustomColors.dark_brown_tint2),
-                        decoration: InputDecoration(
-
-                            //labelText: item.GetName(),
-
-                            labelStyle: TextStyle(
-                                fontSize: 16,
-                                color: CustomColors.dark_brown_tint2),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(
-                                  width: 2.5,
-                                  color: CustomColors.dark_brown_tint2),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(
-                                  width: 2.5,
-                                  color: CustomColors.dark_brown_tint2),
-                            )),
-                      ),
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.dark_coffee_clr)),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 35.0, 0, 0),
+                      child: ImageCapture(photoWidgetStateKey, path: item.imageUrl),
                     ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.85,
-                      child: DropdownCategories(myWidgetStateKey, isInit: initCategories, category: item.GetCategory(), type: item.GetType()),
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.85,
-                      child: Container(
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 30.0, 0, 0),
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.07,
+                        width: MediaQuery.of(context).size.width * 0.85,
                         child: TextField(
                           cursorColor: CustomColors.dark_brown_tint2,
-                          controller: descriptionController,
-                          minLines: 3,
-                          maxLines: 3,
+                          controller: titleController,
                           style: TextStyle(
                               fontSize: 16, color: CustomColors.dark_brown_tint2),
                           decoration: InputDecoration(
-                              alignLabelWithHint: true,
-                              // labelText: 'Описание',
+
+                              //labelText: item.GetName(),
+
                               labelStyle: TextStyle(
                                   fontSize: 16,
                                   color: CustomColors.dark_brown_tint2),
@@ -139,117 +100,160 @@ class EditClothesPage extends StatelessWidget {
                                     color: CustomColors.dark_brown_tint2),
                               ),
                               focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
                                 borderSide: const BorderSide(
                                     width: 2.5,
                                     color: CustomColors.dark_brown_tint2),
-                                borderRadius: BorderRadius.circular(10.0),
                               )),
                         ),
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Padding(
 
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.85,
+                        child: DropdownCategories(myWidgetStateKey, isInit: initCategories, category: item.GetCategory(), type: item.GetType()),
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.85,
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.85 / 2.2,
-                          height: 45,
-                          decoration: BoxDecoration(
-                            color: CustomColors.dark_brown_tint2,
-                            border: Border.all(color : CustomColors.dark_brown_tint2, width: 2.5),
-                            borderRadius: BorderRadius.circular(20),
-
-                          ),
-                          child: Center(
-                            child: GestureDetector(
-                              onTap: () async {
-                                await db!.DeleteClothes(item.id);
-                                BlocProvider.of<ClothesBloc>(context).add(ClothesGetEvent(category:item.category));
-                                titleController.clear();
-                                photoWidgetStateKey.currentState?.Clear();
-                                descriptionController.clear();
-                                myWidgetStateKey.currentState?.clearSelectedOptions();
-                                Navigator.of(context).pop();
-
-
-                              },
-                              child: Text(
-                                'Удалить',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  //fontWeight: FontWeight.w100,
-                                  fontSize: 18,
-                                  letterSpacing: 0.0,
-                                  color: Colors.white,
+                          child: TextField(
+                            cursorColor: CustomColors.dark_brown_tint2,
+                            controller: descriptionController,
+                            minLines: 3,
+                            maxLines: 3,
+                            style: TextStyle(
+                                fontSize: 16, color: CustomColors.dark_brown_tint2),
+                            decoration: InputDecoration(
+                                alignLabelWithHint: true,
+                                // labelText: 'Описание',
+                                labelStyle: TextStyle(
+                                    fontSize: 16,
+                                    color: CustomColors.dark_brown_tint2),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: const BorderSide(
+                                      width: 2.5,
+                                      color: CustomColors.dark_brown_tint2),
                                 ),
-                              ),
-                            ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      width: 2.5,
+                                      color: CustomColors.dark_brown_tint2),
+                                  borderRadius: BorderRadius.circular(10.0),
+                                )),
                           ),
                         ),
-                        padding:const EdgeInsets.fromLTRB(20, 20, 5, 0),
                       ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
 
-                      Padding(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.85 / 2.2,
+                            height: 45,
+                            decoration: BoxDecoration(
+                              color: CustomColors.dark_brown_tint2,
+                              border: Border.all(color : CustomColors.dark_brown_tint2, width: 2.5),
+                              borderRadius: BorderRadius.circular(20),
 
-                        padding:const EdgeInsets.fromLTRB(5, 20, 20, 0),
-
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.85 / 2.2,
-                          height: 45,
-                          decoration: BoxDecoration(
-                            color: CustomColors.dark_brown_tint2,
-                            border: Border.all(color : CustomColors.dark_brown_tint2, width: 2.5),
-                            borderRadius: BorderRadius.circular(20),
-
-                          ),
-                          child: Center(
-                            child: GestureDetector(
-                              onTap: () async {
-                                if (titleController.value.text.isNotEmpty
-                                    && myWidgetStateKey.currentState?.selectedType != null
-                                    && myWidgetStateKey.currentState?.selectedCategory != null) {
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                    content: Text('Информация изменена',style: TextStyle(fontFamily: 'Nexa'),),
-                                    backgroundColor: CustomColors.dark_brown_tint,
-                                  ));
-                                  String? path = await photoWidgetStateKey.currentState?.SaveImage("img#${item.id}");
-                                  await db!.Update(item.id, titleController.value.text,
-                                      descriptionController.value.text,
-                                      myWidgetStateKey.currentState?.selectedType as String,
-                                      myWidgetStateKey.currentState?.selectedCategory as String,
-                                      path as String,
-                                      int.parse( db!.ConvertTypeToWarm(myWidgetStateKey.currentState?.selectedType as String))
-                                  );
+                            ),
+                            child: Center(
+                              child: GestureDetector(
+                                onTap: () async {
+                                  await db!.DeleteClothes(item.id);
                                   BlocProvider.of<ClothesBloc>(context).add(ClothesGetEvent(category:item.category));
+                                  titleController.clear();
+                                  photoWidgetStateKey.currentState?.Clear();
+                                  descriptionController.clear();
+                                  myWidgetStateKey.currentState?.clearSelectedOptions();
                                   Navigator.of(context).pop();
 
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                    content: Text('Неправильные данные',style: TextStyle(fontFamily: 'Nexa')),
-                                    backgroundColor: CustomColors.dark_brown_tint,
-                                  ));
-                                }
 
-                              },
-                              child: Text(
-                                'Сохранить',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  //fontWeight: FontWeight.w100,
-                                  fontSize: 18,
-                                  letterSpacing: 0.0,
-                                  color: Colors.white,
+                                },
+                                child: Text(
+                                  'Удалить',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    //fontWeight: FontWeight.w100,
+                                    fontSize: 18,
+                                    letterSpacing: 0.0,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
+                          padding:const EdgeInsets.fromLTRB(20, 20, 5, 0),
                         ),
-                      )
-                    ],
-                  )
-                ],
+
+                        Padding(
+
+                          padding:const EdgeInsets.fromLTRB(5, 20, 20, 0),
+
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.85 / 2.2,
+                            height: 45,
+                            decoration: BoxDecoration(
+                              color: CustomColors.dark_brown_tint2,
+                              border: Border.all(color : CustomColors.dark_brown_tint2, width: 2.5),
+                              borderRadius: BorderRadius.circular(20),
+
+                            ),
+                            child: Center(
+                              child: GestureDetector(
+                                onTap: () async {
+                                  if (titleController.value.text.isNotEmpty
+                                      && myWidgetStateKey.currentState?.selectedType != null
+                                      && myWidgetStateKey.currentState?.selectedCategory != null) {
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                      content: Text('Информация изменена',style: TextStyle(fontFamily: 'Nexa'),),
+                                      backgroundColor: CustomColors.dark_brown_tint,
+                                    ));
+                                    String? path = await photoWidgetStateKey.currentState?.SaveImage("img#${item.id}");
+                                    await db!.Update(item.id, titleController.value.text,
+                                        descriptionController.value.text,
+                                        myWidgetStateKey.currentState?.selectedType as String,
+                                        myWidgetStateKey.currentState?.selectedCategory as String,
+                                        path as String,
+                                        int.parse( db!.ConvertTypeToWarm(myWidgetStateKey.currentState?.selectedType as String))
+                                    );
+                                    BlocProvider.of<ClothesBloc>(context).add(ClothesGetEvent(category:item.category));
+                                    Navigator.of(context).pop();
+
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                      content: Text('Неправильные данные',style: TextStyle(fontFamily: 'Nexa')),
+                                      backgroundColor: CustomColors.dark_brown_tint,
+                                    ));
+                                  }
+
+                                },
+                                child: Text(
+                                  'Сохранить',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    //fontWeight: FontWeight.w100,
+                                    fontSize: 18,
+                                    letterSpacing: 0.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),

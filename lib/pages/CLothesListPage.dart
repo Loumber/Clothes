@@ -90,21 +90,21 @@ class _ClothesListState extends State<ClothesList> {
                     },
                     controller: editingController,
                     decoration: const InputDecoration(
-                      suffixStyle: TextStyle(color: CustomColors.light_coffee_clr),
-                      labelStyle: TextStyle(color: CustomColors.light_coffee_clr),
+                      suffixStyle: TextStyle(color: CustomColors.dark_brown_tint2),
+                      labelStyle: TextStyle(color: CustomColors.dark_brown_tint2),
                       labelText: "Поиск",
-                      prefixIcon: Icon(Icons.search,color: CustomColors.light_coffee_clr,),
+                      prefixIcon: Icon(Icons.search,color: CustomColors.dark_brown_tint2),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+                          borderSide: BorderSide(color: CustomColors.dark_brown_tint2)
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+                          borderSide: BorderSide(color: CustomColors.dark_brown_tint2)
                       ),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                          borderSide: BorderSide(color: CustomColors.light_coffee_clr)
+                          borderSide: BorderSide(color: CustomColors.dark_brown_tint2)
                       ),
                     )
                 ),

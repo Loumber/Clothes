@@ -61,10 +61,10 @@ class Tile extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.of(context)?.pushNamed(RoutesGenerator.clothesListPage, arguments: arguments),
       child: Padding(
-        padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+        padding: EdgeInsets.fromLTRB(7.0, 7.0, 7, 7.0),
         child: Container(
           height: MediaQuery.of(context).size.height * 0.22,
-          width: MediaQuery.of(context).size.height * 0.4,
+          width: MediaQuery.of(context).size.height * 0.45,
           decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(color : CustomColors.light_coffee_tint),
@@ -84,7 +84,7 @@ class Tile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Icon(icon, size: 80, color: CustomColors.dark_brown_tint,),
-                Text(arguments.title, style: TextStyle(fontSize: 17,color: CustomColors.dark_brown_tint, height: 1.1),textAlign: TextAlign.center,),
+                Text(arguments.title, style: TextStyle(fontSize: 18,color: CustomColors.dark_brown_tint, height: 1.1),textAlign: TextAlign.center,),
               ],
             ),
           ),
