@@ -21,7 +21,7 @@ void main() {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown
     ]
-  )
+  );
   db = AppDb();
   runApp(const MyApp());
 }
