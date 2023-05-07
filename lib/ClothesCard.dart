@@ -1,5 +1,7 @@
 
 
+import 'dart:io';
+
 import 'package:clothes/models/ClothesInfo.dart';
 import 'package:clothes/pages/SelectOutfitPage.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +47,7 @@ class ClothesCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25.0),
                       border: Border.all(color: CustomColors.light_coffee_tint),
                       color: Colors.transparent,
-                      image: DecorationImage(image: NetworkImage('https://gnel.am/images/product/8559/3ff6826f4711e054b45cd3112d2086e8.jpg'),
+                      image: DecorationImage(image: FileImage(File(item.imageUrl)),
                           fit: BoxFit.cover),
                     ),
                   ),

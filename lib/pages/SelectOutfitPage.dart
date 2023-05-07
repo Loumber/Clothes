@@ -69,20 +69,24 @@ class SelectOutfitPageState extends State<SelectOutfitPage> {
                   Container(
                     height: 350,
                     // width: 400,
-                    child: ScrollSnapList(
-                      itemBuilder: (BuildContext context, int index) {
-                        return ClothesCard(
-                          clBloc.filteredData.elementAt(index % cardsCount),
-                        );
-                      },
-                      itemSize: 330,
-                      dynamicItemSize: true,
-                      itemCount: cardsCount,
-                      onItemFocus: (int index) => {
-                        //   setState(() {
-                        //     _focusedItem = index;
-                        // })
-                      },
+                    child: Theme(
+                      data: Theme.of(context).copyWith(
+                          colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.dark_coffee_clr)),
+                      child: ScrollSnapList(
+                        itemBuilder: (BuildContext context, int index) {
+                          return ClothesCard(
+                            clBloc.filteredData.elementAt(index % cardsCount),
+                          );
+                        },
+                        itemSize: 330,
+                        dynamicItemSize: true,
+                        itemCount: cardsCount,
+                        onItemFocus: (int index) => {
+                          //   setState(() {
+                          //     _focusedItem = index;
+                          // })
+                        },
+                      ),
                     ),
                   ),
                   SizedBox(
