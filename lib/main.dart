@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'CustomColors.dart';
 import 'MainNavigationBar.dart';
-
+import 'package:flutter/services.dart';
 import 'clothesBloc/ClothesBloc.dart';
 import 'pages/MainPage.dart';
 
@@ -15,6 +15,13 @@ import 'pages/MainPage.dart';
 AppDb? db;
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown
+    ]
+  );
   db = AppDb();
   runApp(const MyApp());
 }
