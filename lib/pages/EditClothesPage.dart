@@ -17,6 +17,8 @@ class EditClothesPage extends StatelessWidget {
   GlobalKey<ImageCaptureState> photoWidgetStateKey =
       new GlobalKey<ImageCaptureState>();
   bool isInit = false;
+  bool initCategories= false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,14 @@ class EditClothesPage extends StatelessWidget {
     ClothesInfo item =
         ModalRoute.of(context)!.settings.arguments as ClothesInfo;
 
+
     if(!isInit) {
       titleController.text = item.GetName();
       descriptionController.text = item.GetDescription();
       isInit = true;
+    }
+    else {
+      initCategories= true;
     }
 
     return Scaffold(
@@ -42,8 +48,8 @@ class EditClothesPage extends StatelessWidget {
       body: Center(
         child: Container(
             child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.7,
-              width: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.height * 0.77,
+              width: MediaQuery.of(context).size.width * 0.95,
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -64,14 +70,14 @@ class EditClothesPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 25.0, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 35.0, 0, 0),
                     child: ImageCapture(photoWidgetStateKey, path: item.imageUrl),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 30.0, 0, 0),
                     child: SizedBox(
-                      height: 50,
-                      width: MediaQuery.of(context).size.width * 0.75,
+                      height: MediaQuery.of(context).size.height * 0.07,
+                      width: MediaQuery.of(context).size.width * 0.85,
                       child: TextField(
                         cursorColor: CustomColors.dark_brown_tint2,
                         controller: titleController,
@@ -103,15 +109,15 @@ class EditClothesPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                     child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.75,
-                      child: DropdownCategories(myWidgetStateKey, category: item.GetCategory(), type: item.GetType()),
+                      width: MediaQuery.of(context).size.width * 0.85,
+                      child: DropdownCategories(myWidgetStateKey, isInit: initCategories, category: item.GetCategory(), type: item.GetType()),
                     ),
                   ),
 
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                     child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.75,
+                      width: MediaQuery.of(context).size.width * 0.85,
                       child: Container(
                         child: TextField(
                           cursorColor: CustomColors.dark_brown_tint2,
@@ -148,7 +154,7 @@ class EditClothesPage extends StatelessWidget {
                       Padding(
 
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.75 / 2.2,
+                          width: MediaQuery.of(context).size.width * 0.85 / 2.2,
                           height: 45,
                           decoration: BoxDecoration(
                             color: CustomColors.dark_brown_tint2,
@@ -182,15 +188,15 @@ class EditClothesPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        padding:const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                        padding:const EdgeInsets.fromLTRB(20, 20, 5, 0),
                       ),
 
                       Padding(
 
-                        padding:const EdgeInsets.fromLTRB(0, 20, 20, 0),
+                        padding:const EdgeInsets.fromLTRB(5, 20, 20, 0),
 
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.75 / 2.2,
+                          width: MediaQuery.of(context).size.width * 0.85 / 2.2,
                           height: 45,
                           decoration: BoxDecoration(
                             color: CustomColors.dark_brown_tint2,

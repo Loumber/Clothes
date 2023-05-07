@@ -111,14 +111,14 @@ class ImageCaptureState extends State<ImageCapture> {
       SetImage(path!);
     }
     return Padding(
-      padding: const EdgeInsets.fromLTRB(40,0,0, 0),
+      padding: const EdgeInsets.fromLTRB(25,0,0, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             child: Container(
-              height: 130,
-              width: 150,
+              height: MediaQuery.of(context).size.height * 0.2,
+              width: MediaQuery.of(context).size.width * 0.5,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25.0),
                 border: Border.all(color: CustomColors.dark_brown_tint2,width: 2.5, ),

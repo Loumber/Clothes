@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 class DropdownCategories extends StatefulWidget {
   String? category;
   String? type;
-  bool isInit = false;
-  DropdownCategories(Key key, {this.category, this.type}) : super(key: key);
+  bool isInit;
+  DropdownCategories(Key key, {this.category, this.type, required this.isInit}) : super(key: key);
   @override
   State<StatefulWidget> createState() => DropdownCategoriesState(initCategory: category, type: type);
   }
@@ -32,6 +32,7 @@ class DropdownCategoriesState extends State<DropdownCategories>{
   Widget build(BuildContext context) {
     // TODO: implement build
 
+
     if (!widget.isInit && initCategory != null) {
      selectedCategory = initCategory;
      widget.isInit = true;
@@ -45,8 +46,8 @@ class DropdownCategoriesState extends State<DropdownCategories>{
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              width: MediaQuery.of(context).size.width * 0.7 / 2,
-
+              width: MediaQuery.of(context).size.width * 0.8 / 2,
+              height: MediaQuery.of(context).size.height * 0.07,
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -60,10 +61,10 @@ class DropdownCategoriesState extends State<DropdownCategories>{
                       iconEnabledColor: CustomColors.dark_brown_tint,
                       dropdownColor: Colors.white,
                       focusColor: CustomColors.dark_brown_tint2,
-                      hint: Text('Категория', style: TextStyle(fontSize: 14, color: CustomColors.dark_brown_tint2),),
+                      hint: Text('Категория', style: TextStyle(fontSize: 15,fontFamily: "Nexa", color: CustomColors.dark_brown_tint2),),
                       value: selectedCategory,
                       isExpanded: true,
-                      style: TextStyle(fontSize: 16, color: CustomColors.dark_brown_tint2),
+                      style: TextStyle(fontSize: 15, color: CustomColors.dark_brown_tint2),
                       items: categories.map((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
@@ -99,7 +100,8 @@ class DropdownCategoriesState extends State<DropdownCategories>{
 
 
             Container(
-              width: MediaQuery.of(context).size.width * 0.7 / 2,
+              width: MediaQuery.of(context).size.width * 0.8 / 2,
+              height: MediaQuery.of(context).size.height * 0.07,
               child: DecoratedBox(
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -113,9 +115,9 @@ class DropdownCategoriesState extends State<DropdownCategories>{
                       iconEnabledColor: CustomColors.dark_brown_tint,
                       iconDisabledColor: CustomColors.dark_brown_tint2,
                       dropdownColor: Colors.white,
-                      style: TextStyle(fontSize: 16, color: CustomColors.dark_brown_tint2),
+                      style: TextStyle(fontSize: 15, color: CustomColors.dark_brown_tint2),
                       focusColor: CustomColors.dark_coffee_clr,
-                      hint: Text('Тип', style: TextStyle(fontSize: 14, color: CustomColors.dark_brown_tint2),),
+                      hint: Text('Тип', style: TextStyle(fontSize: 15, color: CustomColors.dark_brown_tint2),),
                       value: selectedType,
                       isExpanded: true,
                       items: types.map((String value) {
